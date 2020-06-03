@@ -3,17 +3,12 @@ import { IsNotEmpty } from 'class-validator';
 export class CreateRoleDto {
 
   @IsNotEmpty()
-  readonly caption: string;
+  readonly name: string;
 
   @IsNotEmpty()
-  readonly sortid: string;
-
-  @IsNotEmpty()
-  readonly action: string;
+  readonly description: string;
 
 }
 
+//costcenter: number;
 // must > 0
-//@Column()
-//appid: number;
-

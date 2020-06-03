@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateUserAppDto {
 
@@ -7,5 +7,11 @@ export class CreateUserAppDto {
 
   @IsNotEmpty()
   readonly abbreviation: string;
+
+  @IsNotEmpty()
+  readonly description: string;
+
+  @IsBoolean()
+  readonly active: string;
 
 }
