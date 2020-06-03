@@ -1,11 +1,15 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateErrorLogDto {
 
   @IsNotEmpty()
-  readonly desription: string;
+  readonly description: string;
 
-  @IsNotEmpty()
-  readonly abbreverrorcodeiation: string;
+  @IsNumber()
+  readonly errorcode: number;
+
+  readonly errorcodehtml: number;
+
+  siteid: number;
 
 }
