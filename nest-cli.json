@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "risnode-admin-lib": {
+      "type": "library",
+      "root": "libs/risnode-admin-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/risnode-admin-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/risnode-admin-lib/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
