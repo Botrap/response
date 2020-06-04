@@ -13,10 +13,7 @@ export const ConfigEnv = () => ({
     },
   });
 
-//  console.log(this.configService.get('dbconnection'));
-
-
-  //export const SECRET = 'secret-key';
+//export const SECRET = 'secret-key';
 
 
 
