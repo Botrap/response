@@ -2,10 +2,11 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateGroupDto {
 
-  @IsNotEmpty()
-  readonly desription: string;
+  readonly id: number;
 
   @IsNotEmpty()
-  readonly abbreverrorcodeiation: string;
+  readonly name: string;
+
 
 }
+

@@ -31,14 +31,12 @@ export class GroupService {
   async create(dto: CreateGroupDto): Promise<GroupRO> {
 
     // check uniqueness of username/email
-    const {name, costcenter, description} = dto;
+    const {name} = dto;
 
     // create new group
     let newGroup = new GroupEntity();
     newGroup.name = name;
-    newGroup.costcenter = costcenter;
-    newGroup.description = description;
-
+   
     const errors = await validate(newGroup);
     if (errors.length > 0) {
       const _errors = {group: 'Userinput is not valid.'};
@@ -77,7 +75,6 @@ export class GroupService {
     const GroupRO = {
       id: group.id,
       name: group.name,
-      costcenter: group.costcenter,
       description: group.description
      
     };

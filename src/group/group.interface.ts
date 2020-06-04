@@ -11,6 +11,6 @@ export interface GroupData {
   }
   
   export interface GroupRO {
-    corporation: GroupData;
+    group: GroupData;
   }
-}
+

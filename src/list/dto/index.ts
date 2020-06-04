@@ -1,0 +1,1 @@
+export { CreateCorporationDto } from './create-corporation.dto';
