@@ -7,7 +7,6 @@ import { validate } from 'class-validator';
 
 import { CorporationEntity } from './corporation.entity';
 import { CorporationRO } from './corporation.interface';
-
 import { CreateCorporationDto } from './dto';
 
 @Injectable()

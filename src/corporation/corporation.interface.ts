@@ -12,6 +12,6 @@ export interface CorporationData {
   }
   
   export interface CorporationRO {
-    corperation: CorporationData;
+    corporation: CorporationData;
   }
 
