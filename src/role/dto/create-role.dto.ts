@@ -2,6 +2,8 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateRoleDto {
 
+  readonly id: number;
+
   @IsNotEmpty()
   readonly name: string;
 

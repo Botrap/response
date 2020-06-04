@@ -19,11 +19,11 @@ export class MenuEntryPointEntity {
   @Column()
   sortid: string;
 
-  @Column({default: false})
-  active: boolean;
-
   @Column()
   action: string;
+
+  @Column({default: false})
+  active: boolean;
 
   @Column()
   created: Date;

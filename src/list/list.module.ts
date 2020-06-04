@@ -1,28 +1,19 @@
-import { Module } from '@nestjs/common';
-import { ListService } from './list.service';
-
-@Module({
-  providers: [ListService]
-})
-export class ListModule {}
-
-
 import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CorporationService } from './corporation.service';
-import { CorporationEntity } from './corporation.entity';
-import { CorporationController } from './corporation.controller';
+import { ListService } from './list.service';
+import { ListEntity } from './list.entity';
+import { ListController } from './list.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CorporationEntity])],
-  providers: [CorporationService],
+  imports: [TypeOrmModule.forFeature([ListEntity])],
+  providers: [ListService],
   controllers: [
-    CorporationController
+    ListController
   ],
   exports: []
 })
-export class CorporationModule implements NestModule {
+export class ListModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
   }
 }

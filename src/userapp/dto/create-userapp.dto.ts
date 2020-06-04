@@ -2,6 +2,8 @@ import { IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateUserAppDto {
 
+  readonly id: number;
+
   @IsNotEmpty()
   readonly name: string;
 
@@ -10,8 +12,5 @@ export class CreateUserAppDto {
 
   @IsNotEmpty()
   readonly description: string;
-
-  @IsBoolean()
-  readonly active: string;
 
 }

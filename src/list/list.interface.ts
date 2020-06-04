@@ -11,6 +11,6 @@ export interface ListData {
   }
   
   export interface ListRO {
-    corporation: ListData;
+    list: ListData;
   }
 

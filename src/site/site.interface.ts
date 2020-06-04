@@ -1,4 +1,4 @@
-export interface CorporationData {
+export interface SiteData {
 
     name: string;
     costcenter?: number;
@@ -11,7 +11,7 @@ export interface CorporationData {
 
   }
   
-  export interface CorporationRO {
-    corporation: CorporationData;
+  export interface SiteRO {
+    site: SiteData;
   }
 

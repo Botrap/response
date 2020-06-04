@@ -31,12 +31,11 @@ export class ListService {
   async create(dto: CreateListDto): Promise<ListRO> {
 
     // check uniqueness of username/email
-    const {name, costcenter, description} = dto;
+    const {name, description} = dto;
 
     // create new list
     let newList = new ListEntity();
     newList.name = name;
-    newList.costcenter = costcenter;
     newList.description = description;
 
     const errors = await validate(newList);
@@ -77,7 +76,6 @@ export class ListService {
     const ListRO = {
       id: list.id,
       name: list.name,
-      costcenter: list.costcenter,
       description: list.description
      
     };

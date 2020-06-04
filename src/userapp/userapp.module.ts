@@ -1,28 +1,19 @@
-import { Module } from '@nestjs/common';
-import { UserAppService } from './userapp.service';
-
-@Module({
-  providers: [UserAppService]
-})
-export class UserAppModule {}
-
-
 import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CorporationService } from './corporation.service';
-import { CorporationEntity } from './corporation.entity';
-import { CorporationController } from './corporation.controller';
+import { UserAppService } from './userapp.service';
+import { UserAppEntity } from './userapp.entity';
+import { UserAppController } from './userapp.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CorporationEntity])],
-  providers: [CorporationService],
+  imports: [TypeOrmModule.forFeature([UserAppEntity])],
+  providers: [UserAppService],
   controllers: [
-    CorporationController
+    UserAppController
   ],
   exports: []
 })
-export class CorporationModule implements NestModule {
+export class UserAppModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
   }
 }

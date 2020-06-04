@@ -1,4 +1,4 @@
-export interface CorporationData {
+export interface MenuData {
 
     appid: number,
     caption: string,
@@ -12,6 +12,6 @@ export interface CorporationData {
 
   }
   
-  export interface CorporationRO {
-    corporation: CorporationData;
+  export interface MenuRO {
+    menu: MenuData;
   }

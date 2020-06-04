@@ -1,5 +1,3 @@
-@Injectable()
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository, DeleteResult } from 'typeorm';
@@ -7,22 +5,22 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';
 import { validate } from 'class-validator';
 
-import { UserappEntity } from './userapp.entity';
-import { UserappRO } from './userapp.interface';
-import { CreateUserappDto } from './dto';
+import { UserAppEntity } from './userapp.entity';
+import { UserAppRO } from './userapp.interface';
+import { CreateUserAppDto } from './dto';
 
 @Injectable()
 export class UserappService {
   constructor(
-    @InjectRepository(UserappEntity)
-    private readonly userappRepository: Repository<UserappEntity>,
+    @InjectRepository(UserAppEntity)
+    private readonly userappRepository: Repository<UserAppEntity>,
   ) {}
 
-  async findAll(): Promise<UserappEntity[]> {
+  async findAll(): Promise<UserAppEntity[]> {
     return await this.userappRepository.find();
   }
 
-  async findOne({id}: CreateUserappDto): Promise<UserappEntity> {
+  async findOne({id}: CreateUserAppDto): Promise<UserAppEntity> {
     const userapp = await this.userappRepository.findOne({id});
     if (!userapp) {
       return null;
@@ -30,15 +28,15 @@ export class UserappService {
     return null;
   }
 
-  async create(dto: CreateUserappDto): Promise<UserappRO> {
+  async create(dto: CreateUserAppDto): Promise<UserAppRO> {
 
     // check uniqueness of username/email
-    const {name, costcenter, description} = dto;
+    const {name, abbreviation, description} = dto;
 
     // create new userapp
-    let newUserapp = new UserappEntity();
+    let newUserapp = new UserAppEntity();
     newUserapp.name = name;
-    newUserapp.costcenter = costcenter;
+    newUserapp.abbreviation = abbreviation;
     newUserapp.description = description;
 
     const errors = await validate(newUserapp);
@@ -48,11 +46,11 @@ export class UserappService {
 
     } else {
       const savedUserapp = await this.userappRepository.save(newUserapp);
-      return this.buildUserappRO(savedUserapp);
+      return this.buildUserAppRO(savedUserapp);
     }
   }
 
-  async update(id: number, dto: CreateUserappDto): Promise<UserappEntity> {
+  async update(id: number, dto: CreateUserAppDto): Promise<UserAppEntity> {
     let toUpdate = await this.userappRepository.findOne(id);
 
     let updated = Object.assign(toUpdate, dto);
@@ -63,7 +61,7 @@ export class UserappService {
     return await this.userappRepository.delete({ id: id});
   }
 
-  async findById(id: number): Promise<UserappRO>{
+  async findById(id: number): Promise<UserAppRO>{
     const userapp = await this.userappRepository.findOne(id);
 
     if (!userapp) {
@@ -71,20 +69,20 @@ export class UserappService {
       throw new HttpException({errors}, 401);
     }
 
-    return this.buildUserappRO(userapp);
+    return this.buildUserAppRO(userapp);
   }
 
 
-  private buildUserappRO(userapp: UserappEntity) {
-    const UserappRO = {
+  private buildUserAppRO(userapp: UserAppEntity) {
+    const UserAppRO = {
       id: userapp.id,
       name: userapp.name,
-      costcenter: userapp.costcenter,
+      abbreviation: userapp.abbreviation,
       description: userapp.description
      
     };
 
-    return {userapp: UserappRO};
+    return {userapp: UserAppRO};
   }
 }
 

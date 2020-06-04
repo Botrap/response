@@ -1,4 +1,4 @@
-export interface CorporationData {
+export interface UserAppData {
 
     name: string;
     abbreviation: string;
@@ -11,7 +11,7 @@ export interface CorporationData {
 
   }
   
-  export interface CorporationRO {
-    corporation: CorporationData;
+  export interface UserAppRO {
+    userapp: UserAppData;
   }
 

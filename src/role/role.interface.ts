@@ -1,4 +1,4 @@
-export interface CorporationData {
+export interface RoleData {
 
     name: string;
     description: string;
@@ -10,7 +10,7 @@ export interface CorporationData {
 
   }
   
-  export interface CorporationRO {
-    corporation: CorporationData;
+  export interface RoleRO {
+    role: RolenData;
   }
 
