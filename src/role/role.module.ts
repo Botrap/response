@@ -1,28 +1,19 @@
-import { Module } from '@nestjs/common';
-import { RoleService } from './role.service';
-
-@Module({
-  providers: [RoleService]
-})
-export class RoleModule {}
-
-
 import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CorporationService } from './corporation.service';
-import { CorporationEntity } from './corporation.entity';
-import { CorporationController } from './corporation.controller';
+import { RoleService } from './role.service';
+import { RoleEntity } from './role.entity';
+import { RoleController } from './role.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CorporationEntity])],
-  providers: [CorporationService],
+  imports: [TypeOrmModule.forFeature([RoleEntity])],
+  providers: [RoleService],
   controllers: [
-    CorporationController
+    RoleController
   ],
   exports: []
 })
-export class CorporationModule implements NestModule {
+export class RoleModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
   }
 }

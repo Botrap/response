@@ -10,7 +10,7 @@ import { UserAppRO } from './userapp.interface';
 import { CreateUserAppDto } from './dto';
 
 @Injectable()
-export class UserappService {
+export class UserAppService {
   constructor(
     @InjectRepository(UserAppEntity)
     private readonly userappRepository: Repository<UserAppEntity>,
