@@ -1,7 +1,19 @@
-import { Module } from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { GroupService } from './group.service';
+import { GroupEntity } from './group.entity';
+import { GroupController } from './group.controller';
 
 @Module({
-  providers: [GroupService]
+  imports: [TypeOrmModule.forFeature([GroupEntity])],
+  providers: [GroupService],
+  controllers: [
+    GroupController
+  ],
+  exports: []
 })
-export class GroupModule {}
+export class GroupModule implements NestModule {
+  public configure(consumer: MiddlewareConsumer) {
+  }
+}

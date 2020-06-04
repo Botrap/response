@@ -21,13 +21,13 @@ export class UserAppEntity {
   active: boolean;
 
   @Column()
-  created: Date;
+  createdat: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updated: Date;
+  updatedat: Date;
 
   @Column()
   updatedby: number;
