@@ -40,3 +40,4 @@ export class MenuEntity {
   menuentries: MenuEntity[];
 
 }
+
