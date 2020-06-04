@@ -19,9 +19,6 @@ export class MenuEntryPointEntity {
   @Column()
   sortid: string;
 
-  @Column()
-  action: string;
-
   @Column({default: false})
   active: boolean;
 

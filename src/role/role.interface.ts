@@ -11,6 +11,6 @@ export interface RoleData {
   }
   
   export interface RoleRO {
-    role: RolenData;
+    role: RoleData;
   }
 

@@ -1,10 +1,9 @@
 export interface MenuData {
 
-    appid: number,
+    appid: string,
     caption: string,
     sortid: string,
     active?: boolean;
-    action: string,
     createdat?: Date;
     createdby?: number;
     updatedat?: Date;

@@ -16,9 +16,6 @@ export class CreateMenuEntryPointDto {
   @IsNotEmpty()
   readonly sortid: string;
 
-  @IsNotEmpty()
-  readonly action: string;
-
 }
 
 

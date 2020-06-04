@@ -31,13 +31,13 @@ export class MenuService {
   async create(dto: CreateMenuDto): Promise<MenuRO> {
 
     // check uniqueness of username/email
-    const {name, costcenter, description} = dto;
+    const {appid, caption, sortid} = dto;
 
     // create new menu
     let newMenu = new MenuEntity();
-    newMenu.name = name;
-    newMenu.costcenter = costcenter;
-    newMenu.description = description;
+    newMenu.appid = appid;
+    newMenu.caption = caption;
+    newMenu.sortid = sortid;
 
     const errors = await validate(newMenu);
     if (errors.length > 0) {
@@ -76,9 +76,9 @@ export class MenuService {
   private buildMenuRO(menu: MenuEntity) {
     const MenuRO = {
       id: menu.id,
-      name: menu.name,
-      costcenter: menu.costcenter,
-      description: menu.description
+      appid: menu.appid,
+      caption: menu.caption,
+      sortid: menu.sortid
      
     };
 

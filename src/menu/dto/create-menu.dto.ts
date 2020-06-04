@@ -5,7 +5,7 @@ export class CreateMenuDto {
   readonly id: number;
 
   @IsNotEmpty()
-  readonly appid: number;
+  readonly appid: string;
 
   @IsNotEmpty()
   readonly caption: string;

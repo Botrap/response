@@ -31,12 +31,11 @@ export class RoleService {
   async create(dto: CreateRoleDto): Promise<RoleRO> {
 
     // check uniqueness of username/email
-    const {name, costcenter, description} = dto;
+    const {name, description} = dto;
 
     // create new role
     let newRole = new RoleEntity();
     newRole.name = name;
-    newRole.costcenter = costcenter;
     newRole.description = description;
 
     const errors = await validate(newRole);
@@ -77,7 +76,6 @@ export class RoleService {
     const RoleRO = {
       id: role.id,
       name: role.name,
-      costcenter: role.costcenter,
       description: role.description
      
     };

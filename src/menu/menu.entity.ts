@@ -9,7 +9,7 @@ export class MenuEntity {
   id: number;
 
   @Column()
-  appid: number;
+  appid: string;
 
   @Column()
   caption: string;
@@ -19,9 +19,6 @@ export class MenuEntity {
 
   @Column({default: false})
   active: boolean;
-
-  @Column()
-  action: string;
 
   @Column()
   createdat: Date;
