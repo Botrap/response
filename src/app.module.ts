@@ -5,11 +5,6 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
-import { ConfigService } from '@nestjs/config';
-import { ConfigModule } from '@nestjs/config';
-import { ConfigEnv } from './config/config.env'
-import { DatabaseConfig } from './config/config.database';
-
 import { RoleModule } from './role/role.module';
 import { CorporationModule } from './corporation/corporation.module';
 import { CorporationController } from './corporation/corporation.controller';
@@ -23,19 +18,22 @@ import { TagModule } from './tag/tag.module';
 import { ProfileModule } from './profile/profile.module';
 import { ErrorlogModule } from './errorlog/errorlog.module';
 
+import { ConfigModule } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
+import { configenv } from './config/config.env'
+import { DatabaseConfig } from './config/database.config';
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [ConfigEnv]
+      load: [configenv],
     }),
-
     TypeOrmModule.forRootAsync({
-        imports: [ConfigModule],
-        useClass: DatabaseConfig,
-
+      imports: [ConfigModule],
+      useClass: DatabaseConfig,
     }),
-
     ArticleModule,
     UserModule,
     ProfileModule,
@@ -51,10 +49,8 @@ import { ErrorlogModule } from './errorlog/errorlog.module';
 
   ],
   controllers: [
-    AppController,
-    UserAppController,
-    CorporationController,
+    AppController
   ],
-  providers: []
+  providers: [ConfigService]
 })
-export class ApplicationModule {}
+export class AppModule {}

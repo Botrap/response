@@ -6,11 +6,7 @@ import { ConfigService } from '@nestjs/config';
 export class DatabaseConfig implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) {}
   createTypeOrmOptions() {
-    return this.configService.get('database');
-
-    console.log(this.configService.get('database'));
-    
+   return this.configService.get('database');   
   }
 }
 
-// injectable service!!

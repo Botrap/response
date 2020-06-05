@@ -1,18 +1,24 @@
 import { NestFactory } from '@nestjs/core';
-import { ApplicationModule } from './app.module';
+import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
+import { DatabaseConfig } from './config/database.config';
+
 
 async function bootstrap() {
   const appOptions = {cors: true};
-  const app = await NestFactory.create(ApplicationModule, appOptions);
-  const configService = app.get(ConfigService);
-  const port = configService.get('HTTP_PORT');
+  const app = await NestFactory.create(AppModule, appOptions);
+
+  //const configService = app.get(ConfigService);
+  const port = app.get('ConfigService')['HTTP_PORT'];
+  console.log(`Ports is ${port}!`);
+  console.log(port);
+
   const basePath = '/api';
   app.setGlobalPrefix(basePath);
 
-  const options = new DocumentBuilder()
-    .setTitle('RISNODE-ADMIN')
+  const options = new DocumentBuilder() 
+    .setTitle('RisNode Admin')
     .setDescription('The Riantis Node API description')
     .setVersion('1.0')
     .addServer(basePath)
@@ -21,6 +27,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/docs', app, document);
 
-  await app.listen(port);
+  await app.listen(3000);
 }
 bootstrap();
