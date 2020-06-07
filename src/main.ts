@@ -14,18 +14,20 @@ async function bootstrap() {
   console.log(`Ports is ${port}!`);
   console.log(port);
 
-  const basePath = '/api';
+  
+  const basePath = 'api';
+  //const basePath = '/api';
   app.setGlobalPrefix(basePath);
 
   const options = new DocumentBuilder() 
     .setTitle('RisNode Admin')
     .setDescription('The Riantis Node API description')
-    .setVersion('1.0')
-    .addServer(basePath)
+    .setVersion('1.0.0')
+    //.addServer(basePath)
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('/docs', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   await app.listen(3000);
 }

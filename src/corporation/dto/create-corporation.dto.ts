@@ -3,6 +3,7 @@ import { IsNotEmpty } from 'class-validator';
 export class CreateCorporationDto {
 
   readonly id: number;
+  readonly slug: string;
 
   @IsNotEmpty()
   readonly name: string;

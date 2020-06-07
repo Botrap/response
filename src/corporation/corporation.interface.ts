@@ -1,5 +1,9 @@
+
+import { CorporationEntity } from './corporation.entity';
+
 export interface CorporationData {
 
+    slug: string;
     name: string;
     costcenter?: number;
     description: string;
@@ -14,4 +18,10 @@ export interface CorporationData {
   export interface CorporationRO {
     corporation: CorporationData;
   }
+
+  export interface CorporationsRO {
+    corporations: CorporationEntity;
+    corporationsCount: number;
+  }
+  
 

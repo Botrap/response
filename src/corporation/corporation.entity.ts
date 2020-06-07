@@ -8,6 +8,9 @@ export class CorporationEntity {
   id: number;
 
   @Column()
+  slug: string;
+
+  @Column()
   name: string;
 
   @Column()
