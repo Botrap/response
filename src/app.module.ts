@@ -48,8 +48,7 @@ import { DatabaseConfig } from './config/database.config';
     UserAppModule
 
   ],
-  controllers: [
-        TestController, 
+  controllers: [ 
     AppController
   ],
   providers: [ConfigService]
