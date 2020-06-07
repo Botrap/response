@@ -20,13 +20,6 @@ export class CorporationController {
 
   constructor(private readonly corporationService: CorporationService) {}
 
-  @ApiOperation({ summary: 'Get all corporations' })
-  @ApiResponse({ status: 200, description: 'Return all corporations.'})
-  @Get()
-  async findAll(@Query() query): Promise<CorporationsRO> {
-    return await this.corporationService.findAll(query);
-  }
-
   @Get(':slug')
   async findOne(@Param('slug') slug): Promise<CorporationRO> {
     return await this.corporationService.findOne({slug});
