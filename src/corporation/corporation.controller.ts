@@ -2,7 +2,7 @@ import {Get, Post, Body, Put, Delete, Query, Param, Controller} from '@nestjs/co
 import { Request } from 'express';
 import { CorporationService } from './corporation.service';
 import { CreateCorporationDto } from './dto';
-import { CorporationsRO, CorporationRO } from './corporation.interface';
+import { CorporationRO } from './corporation.interface';
 
 //import { CommentsRO } from './corporation.interface';
 import { User } from '../user/user.decorator';
