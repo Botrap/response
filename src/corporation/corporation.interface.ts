@@ -19,9 +19,4 @@ export interface CorporationData {
     corporation: CorporationData;
   }
 
-  export interface CorporationsRO {
-    corporations: CorporationEntity;
-    corporationsCount: number;
-  }
-  
 

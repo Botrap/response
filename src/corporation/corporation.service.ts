@@ -6,7 +6,7 @@ import { HttpStatus } from '@nestjs/common';
 import { validate } from 'class-validator';
 
 import { CorporationEntity } from './corporation.entity';
-import { CorporationsRO, CorporationRO } from './corporation.interface';
+import { CorporationRO } from './corporation.interface';
 import { CreateCorporationDto } from './dto';
 
 @Injectable()
@@ -16,33 +16,7 @@ export class CorporationService {
     private readonly corporationRepository: Repository<CorporationEntity>,
   ) {}
 
-  async findAll(query): Promise<CorporationsRO> {
-
-    const qb = await getRepository(CorporationEntity)
-      .createQueryBuilder('corporation')
-    qb.where("1 = 1");
-
-    if ('active' in query) {
-      qb.andWhere("corporation.active = true");
-    }
-
-    qb.orderBy('corporation.created', 'DESC');
-
-    const corporationsCount = await qb.getCount();
-
-    if ('limit' in query) {
-      qb.limit(query.limit);
-    }
-
-    if ('offset' in query) {
-      qb.offset(query.offset);
-    }
-
-    const corporations = await qb.getMany();
-
-    return {corporations, corporationsCount};
-  }
-
+  
   async findOne({id}: CreateCorporationDto): Promise<CorporationEntity> {
     const corporation = await this.corporationRepository.findOne({id});
     if (!corporation) {
