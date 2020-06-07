@@ -34,8 +34,9 @@ export class CorporationEntity {
   @Column()
   updatedby: number;
 
-  @OneToMany(type => SiteEntity, site => site.corporation, {eager: true})
+  @OneToMany(type => SiteEntity, site => site.corporation)
   @JoinColumn()
   sites: SiteEntity[];
 
 }
+
