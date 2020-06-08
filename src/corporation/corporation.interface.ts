@@ -1,6 +1,4 @@
 
-import { CorporationEntity } from './corporation.entity';
-
 export interface CorporationData {
 
     slug: string;
@@ -18,5 +16,4 @@ export interface CorporationData {
   export interface CorporationRO {
     corporation: CorporationData;
   }
-
 
