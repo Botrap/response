@@ -29,9 +29,9 @@ export class ListEntity {
   updatedby: number;
 
   @OneToMany(type => ListEntryEntity, listentry => listentry.list, {eager: true})
-  @JoinColumn()
   listentries: ListEntryEntity[];
 
 
 }
+
 

@@ -3,6 +3,7 @@ import { Request } from 'express';
 import { CorporationService } from './corporation.service';
 import { CreateCorporationDto } from './dto';
 import { CorporationRO } from './corporation.interface';
+import { CorporationEntity } from './corporation.entity';
 
 //import { CommentsRO } from './corporation.interface';
 import { User } from '../user/user.decorator';
@@ -20,10 +21,22 @@ export class CorporationController {
 
   constructor(private readonly corporationService: CorporationService) {}
 
-  @Get(':slug')
-  async findOne(@Param('slug') slug): Promise<CorporationRO> {
-    return await this.corporationService.findOne({slug});
-  }
+
+ // @Get('corporation')
+ // async findMe(@Corporation('email') email: string): Promise<CorporationRO> {
+ //   return await this.corporationService.findOne({id; any});
+ // }
+
+
+//  @Get()
+//  async findAll(): Promise<CorporationEntity[]> {
+//    return await this.corporationService.findAll();
+//  }
+
+  // @Get(':slug')
+  // async findOne(@Param('slug') slug): Promise<CorporationRO> {
+  //   return await this.corporationService.findOne({slug});
+  // }
 
   @ApiOperation({ summary: 'Create corporation' })
   @ApiResponse({ status: 201, description: 'The corporation has been successfully created.'})

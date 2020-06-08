@@ -19,5 +19,4 @@ export class ListEntryEntity {
   @ManyToOne(type => ListEntity, list => list.listentries)
   list: ListEntity;
 
-
 }
