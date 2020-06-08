@@ -1,4 +1,5 @@
 import { CorporationData } from '../corporation/corporation.interface';
+import { SiteEntity } from '../site/site.entity';
 
 export interface SiteData {
 
@@ -14,6 +15,6 @@ export interface SiteData {
   }
   
   export interface SiteRO {
-    site: SiteData;
+    site: SiteEntity;
   }
 
