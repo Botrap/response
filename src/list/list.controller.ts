@@ -10,7 +10,9 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 import {
-  ApiBearerAuth, ApiTags
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation, ApiTags,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
