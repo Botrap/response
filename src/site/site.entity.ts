@@ -9,6 +9,9 @@ export class SiteEntity {
   id: number;
 
   @Column()
+  slug: string;
+
+  @Column()
   name: string;
 
   @Column()
