@@ -1,3 +1,5 @@
+import { CorporationData } from '../corporation/corporation.interface';
+
 export interface SiteData {
 
     name: string;
@@ -8,7 +10,7 @@ export interface SiteData {
     createdby?: number;
     updatedat?: Date;
     updatedby?: number;
-
+    corporation?: CorporationData;
   }
   
   export interface SiteRO {
