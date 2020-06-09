@@ -51,10 +51,10 @@ export class ListController {
     return await this.listService.delete(params.slug);
   }
 
-  @Get(':slug/listentries')
-  async findListEntries(@Param('slug') slug): Promise<ListEntryRO> {
-    return await this.listService.findListEntry(slug);
-  }
+  // @Get(':slug/listentries')
+  // async findListEntries(@Param('slug') slug): Promise<ListEntryRO> {
+  //   return await this.listService.findListEntry(slug);
+  // }
 
  
 }

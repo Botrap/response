@@ -53,7 +53,7 @@ export class UserEntity {
   @OneToMany(type => ArticleEntity, article => article.author)
   articles: ArticleEntity[];
 
-  @OneToMany(type => RoleEntity, role => role.id)
+  @OneToMany(type => RoleEntity, role => role.user)
   roles: RoleEntity[];
 
 }

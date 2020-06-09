@@ -25,12 +25,4 @@ export interface ListData {
     listentries: ListEntry[];
   }
 
-
-
-
-
-  export interface ListEntriesRO {
-    listentries: ListEntry[];
-  }
-
   

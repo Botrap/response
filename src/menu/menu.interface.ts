@@ -1,3 +1,10 @@
+import { UserData } from '../user/user.interface';
+import { MenuEntity } from './menu.entity';
+
+interface MenuEntry {
+  body: string;
+}
+
 export interface MenuData {
 
     appid: string,
@@ -13,4 +20,8 @@ export interface MenuData {
   
   export interface MenuRO {
     menu: MenuData;
+  }
+
+  export interface MenuEntryRO {
+    menuentries: MenuEntry;
   }

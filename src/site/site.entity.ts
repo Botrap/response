@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { CorporationEntity } from '../corporation/corporation.entity';
-import { UserAppEntity } from '../userapp/userapp.entity';
+import { RoleEntity } from '../role/role.entity';
 
 @Entity('site')
 export class SiteEntity {
@@ -38,7 +38,8 @@ export class SiteEntity {
   @ManyToOne(type => CorporationEntity, corporation => corporation.sites)
   corporation: CorporationEntity;
 
-  @OneToMany(type => UserAppEntity, userapp => userapp.site, {eager: true})
-  userapps: SiteEntity[];
+  @OneToMany(type => RoleEntity, role => role.site)
+  roles: RoleEntity[];
 
 }
+
