@@ -29,10 +29,10 @@ export class CorporationController {
  // }
 
 
-//  @Get()
-//  async findAll(): Promise<CorporationEntity[]> {
-//    return await this.corporationService.findAll();
-//  }
+  @Get()
+  async findAll(): Promise<CorporationEntity[]> {
+    return await this.corporationService.findAll();
+  }
 
   // @Get(':slug')
   // async findOne(@Param('slug') slug): Promise<CorporationRO> {
