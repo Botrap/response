@@ -5,11 +5,11 @@ import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { UserService } from './user.service';
 
-import {ConfigService} from '@nestjs/config'
+import {ConfigService} from '@nestjs/config';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly userService: UserService, configService: ConfigService) {}
+  constructor(private readonly userService: UserService, private configService: ConfigService) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
     const authHeaders = req.headers.authorization;
