@@ -21,8 +21,15 @@ export class AuthMiddleware implements NestMiddleware {
     if (authHeaders && (authHeaders as string).split(' ')[1]) {
       const token = (authHeaders as string).split(' ')[1];
       const secret = this.configService.get('JWT_SECRET');
-      
+
+      console.log('token');
+      console.log(token);
+      console.log('secret');
       console.log(secret);
+      
+
+
+
 
       const decoded: any = jwt.verify(token, secret);
       const user = await this.userService.findById(decoded.id);
