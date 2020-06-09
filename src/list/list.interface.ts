@@ -1,3 +1,10 @@
+import { UserData } from '../user/user.interface';
+import { ListEntity } from './list.entity';
+interface ListEntry {
+  body: string;
+}
+
+
 export interface ListData {
 
     name: string;
@@ -14,3 +21,16 @@ export interface ListData {
     list: ListData;
   }
 
+  export interface ListEntryRO {
+    listentries: ListEntry[];
+  }
+
+
+
+
+
+  export interface ListEntriesRO {
+    listentries: ListEntry[];
+  }
+
+  

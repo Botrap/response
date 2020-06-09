@@ -2,6 +2,7 @@ import { Get, Post, Body, Put, Delete, Param, Controller, UsePipes } from '@nest
 import { Request } from 'express';
 import { ListService } from './list.service';
 import { ListRO } from './list.interface';
+import { ListEntryRO } from './list.interface';
 import { CreateListDto } from './dto';
 import { ListEntity } from './list.entity';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
@@ -51,9 +52,10 @@ export class ListController {
   }
 
   @Get(':slug/listentries')
-  async findComments(@Param('slug') slug): Promise<CommentsRO> {
-    return await this.listService.findComments(slug);
+  async findListEntries(@Param('slug') slug): Promise<ListEntryRO> {
+    return await this.listService.findListEntry(slug);
   }
 
  
 }
+

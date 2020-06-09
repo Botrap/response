@@ -6,8 +6,10 @@ import { HttpStatus } from '@nestjs/common';
 import { validate } from 'class-validator';
 
 import { ListEntity } from './list.entity';
-import { ListRO } from './list.interface';
+import { ListRO, ListEntryRO } from './list.interface';
 import { CreateListDto } from './dto';
+
+
 
 @Injectable()
 export class ListService {
@@ -72,6 +74,12 @@ export class ListService {
     return this.buildListRO(list);
   }
 
+
+  // async findListEntry(slug: string): Promise<ListEntryRO> {
+  //   const article = await this.listRepository.findOne({slug});
+  //   return {listentries: list.listentries};
+
+  // }
 
   private buildListRO(list: ListEntity) {
     const ListRO = {
