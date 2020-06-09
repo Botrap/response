@@ -18,11 +18,11 @@ import {
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiTags('list')
-@Controller()
+@ApiTags('lists')
+@Controller('lists')
+
 export class ListController {
   constructor(private readonly listService: ListService) {}
-
 
   @Get()
   async findAll(): Promise<ListEntity[]> {

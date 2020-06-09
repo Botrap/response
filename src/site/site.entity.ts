@@ -39,7 +39,6 @@ export class SiteEntity {
   corporation: CorporationEntity;
 
   @OneToMany(type => UserAppEntity, userapp => userapp.site, {eager: true})
-  @JoinColumn()
   userapps: SiteEntity[];
 
 }
