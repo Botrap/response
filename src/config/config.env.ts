@@ -1,6 +1,6 @@
 export const configenv = () => ({
     port: Number(process.env.HTTP_PORT) || 3000,
-    jwtSecret: process.env.JWT_SECRET,
+    jwtSecret: 'supersecret',
     database: {
       type: 'mssql',
       host: 'rihsrv001',
