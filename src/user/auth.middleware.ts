@@ -7,6 +7,9 @@ import { UserService } from './user.service';
 
 import {ConfigService} from '@nestjs/config'
 
+
+
+
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   constructor(private readonly userService: UserService, private configService: ConfigService) {}
@@ -20,8 +23,8 @@ export class AuthMiddleware implements NestMiddleware {
 
     if (authHeaders && (authHeaders as string).split(' ')[1]) {
       const token = (authHeaders as string).split(' ')[1];
-      const secret = this.configService.get('JWT_SECRET');
-
+     // const secret = this.configService.get('JWT_SECRET');
+      const secret = 'supersecret'
       console.log('token');
       console.log(token);
       console.log('secret');
