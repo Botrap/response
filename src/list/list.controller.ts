@@ -18,7 +18,7 @@ import {
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiTags('user')
+@ApiTags('list')
 @Controller()
 export class ListController {
   constructor(private readonly listService: ListService) {}
