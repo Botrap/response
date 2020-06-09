@@ -50,5 +50,10 @@ export class ListController {
     return await this.listService.delete(params.slug);
   }
 
+  @Get(':slug/listentries')
+  async findComments(@Param('slug') slug): Promise<CommentsRO> {
+    return await this.listService.findComments(slug);
+  }
+
  
 }
