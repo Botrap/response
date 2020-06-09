@@ -1,18 +1,20 @@
 import { Get, Post, Body, Put, Delete, Param, Controller, UsePipes } from '@nestjs/common';
-
 import { Request } from 'express';
 import { ListService } from './list.service';
 import { ListRO } from './list.interface';
 import { CreateListDto } from './dto';
+import { ListEntity } from './list.entity';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 
 //import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
+
 import {
   ApiBearerAuth,
   ApiResponse,
-  ApiOperation, ApiTags,
+  ApiOperation, 
+  ApiTags,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
