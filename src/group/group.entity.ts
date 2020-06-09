@@ -13,17 +13,20 @@ export class GroupEntity {
   @Column()
   description: string;
 
-  @Column({default: false})
-  active: boolean;
+  //@Column({default: false})
+  //active: boolean;
 
   @Column()
-  createdat: Date;
+  active: boolean = false;
+
+  @Column()
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updatedat: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;

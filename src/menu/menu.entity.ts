@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { UserAppEntity } from '../userapp/userapp.entity';
 import { MenuEntryEntity } from './menuentry.entity';
 
@@ -20,14 +20,17 @@ export class MenuEntity {
   @Column({default: false})
   active: boolean;
 
-  @Column()
-  createdat: Date;
+  @CreateDateColumn()
+  createddate: Date;
 
   @Column()
   createdby: number
 
-  @Column()
-  updatedat: Date;
+  //@Column()
+  //updatedat: Date;
+
+  @UpdateDateColumn()
+  updateddate: Date;
 
   @Column()
   updatedby: number;

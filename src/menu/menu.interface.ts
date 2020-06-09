@@ -11,9 +11,9 @@ export interface MenuData {
     caption: string,
     sortid: string,
     active?: boolean;
-    createdat?: Date;
+    createddate?: Date;
     createdby?: number;
-    updatedat?: Date;
+    updateddate?: Date;
     updatedby?: number;
 
   }
