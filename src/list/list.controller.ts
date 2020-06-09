@@ -39,10 +39,10 @@ export class ListController {
     return await this.listService.update(id, listData);
   }
 
-  @UsePipes(new ValidationPipe())
+  //@UsePipes(new ValidationPipe())
   @Post('list')
-  async create(@Body('list') userData: CreateListDto) {
-    return this.listService.create(userData);
+  async create(@Body('list') listData: CreateListDto) {
+    return this.listService.create(listData);
   }
 
   @Delete('list/:slug')

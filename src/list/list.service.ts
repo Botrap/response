@@ -18,6 +18,7 @@ export class ListService {
 
   async findAll(): Promise<ListEntity[]> {
     return await this.listRepository.find();
+
   }
 
   async findOne({id}: CreateListDto): Promise<ListEntity> {
