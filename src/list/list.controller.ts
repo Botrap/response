@@ -23,19 +23,25 @@ import {
 export class ListController {
   constructor(private readonly listService: ListService) {}
 
+
+  @Get()
+  async findAll(): Promise<ListEntity[]> {
+    return await this.listService.findAll();
+  }
+
   @Get('list')
   async findMList(@Param('id') id: number): Promise<ListRO> {
     return await this.listService.findById(id);
   }
 
   @Put('list')
-  async update(@Param('id') id: number, @Body('user') listData: CreateListDto) {
+  async update(@Param('id') id: number, @Body('list') listData: CreateListDto) {
     return await this.listService.update(id, listData);
   }
 
   @UsePipes(new ValidationPipe())
   @Post('list')
-  async create(@Body('user') userData: CreateListDto) {
+  async create(@Body('list') userData: CreateListDto) {
     return this.listService.create(userData);
   }
 
