@@ -24,7 +24,7 @@ export class AuthMiddleware implements NestMiddleware {
     if (authHeaders && (authHeaders as string).split(' ')[1]) {
       const token = (authHeaders as string).split(' ')[1];
      // const secret = this.configService.get('JWT_SECRET');
-      const secret = 'supersecret'
+      const secret = "'supersecret";
       console.log('token');
       console.log(token);
       console.log('secret');
@@ -36,6 +36,10 @@ export class AuthMiddleware implements NestMiddleware {
 
       const decoded: any = jwt.verify(token, secret);
       const user = await this.userService.findById(decoded.id);
+
+      console.log('decoded');
+      console.log(user);
+
 
       if (!user) {
         throw new HttpException('User not found.', HttpStatus.UNAUTHORIZED);
