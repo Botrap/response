@@ -13,10 +13,14 @@ import { CreateCorporationDto } from './dto';
 export class CorporationService {
   constructor(
     @InjectRepository(CorporationEntity)
-    private readonly corporationRepository: Repository<CorporationEntity>,
+    private readonly corporationRepository: Repository<CorporationEntity>, 
   ) {}
 
   
+  async findAll(): Promise<CorporationEntity[]> {
+    return await this.corporationRepository.find();
+  }
+
   async findOne({id}: CreateCorporationDto): Promise<CorporationEntity> {
     const corporation = await this.corporationRepository.findOne({id});
     if (!corporation) {
