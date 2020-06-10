@@ -11,11 +11,15 @@ export class MenuEntity {
   @Column()
   appid: string;
 
-  @Column()
+  @Column({length: 10})
   sortid: string;
 
   @Column()
   caption: string;
+
+  @Column()
+  caption2: string;
+
 
 
   @Column({default: false})
