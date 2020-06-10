@@ -7,7 +7,6 @@ import { validate } from 'class-validator';
 
 import { MenuEntity } from './menu.entity';
 import { MenuEntryEntity } from './menuentry.entity';
-import { MenuEntryPointEntity } from './menuentrypoint.entity';
 
 import { MenuRO } from './menu.interface';
 import { CreateMenuDto } from './dto';

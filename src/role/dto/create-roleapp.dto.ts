@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsBoolean } from 'class-validator';
 
-export class CreateUserAppDto {
+export class CreateRoleAppDto {
 
   readonly id: number;
 

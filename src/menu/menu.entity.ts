@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
-import { UserAppEntity } from '../userapp/userapp.entity';
+import { MenuAppEntity } from './menuapp.entity';
 import { MenuEntryEntity } from './menuentry.entity';
 
 @Entity('menu')
@@ -7,18 +7,25 @@ export class MenuEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
-
+ 
   @Column()
   appid: string;
 
   @Column()
-  caption: string;
+  sortid: string;
 
   @Column()
-  sortid: string;
+  caption: string;
+
 
   @Column({default: false})
   active: boolean;
+
+  @Column()
+  action: string;
+
+  @Column()
+  mouseover: string;
 
   @CreateDateColumn()
   createddate: Date;
@@ -26,17 +33,14 @@ export class MenuEntity {
   @Column()
   createdby: number
 
-  //@Column()
-  //updatedat: Date;
-
   @UpdateDateColumn()
   updateddate: Date;
 
   @Column()
   updatedby: number;
 
-  @ManyToOne(type => UserAppEntity, userapp => userapp.menus)
-  userapp: UserAppEntity;
+  @ManyToOne(type => MenuAppEntity, menuapp => menuapp.menus)
+  menuapp: MenuAppEntity;
 
   @OneToMany(type => MenuEntryEntity, menuentry => menuentry.menu, {eager: true})
   @JoinColumn()

@@ -10,8 +10,6 @@ import { CorporationModule } from './corporation/corporation.module';
 import { CorporationController } from './corporation/corporation.controller';
 import { SiteModule } from './site/site.module';
 import { GroupModule } from './group/group.module';
-import { UserAppModule } from './userapp/userapp.module';
-import { UserAppController } from './userapp/userapp.controller';
 import { MenuModule } from './menu/menu.module';
 import { ListModule } from './list/list.module';
 import { TagModule } from './tag/tag.module';
@@ -44,8 +42,7 @@ import { DatabaseConfig } from './config/database.config';
     RoleModule,
     SiteModule,
     TagModule,
-    UserModule,
-    UserAppModule
+    UserModule
 
   ],
   controllers: [ 

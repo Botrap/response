@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { RoleEntity } from '../role/role.entity';
-import { MenuEntity } from '../menu/menu.entity';
+import { MenuEntity } from './menu.entity';
 
-@Entity('userapp')
-export class UserAppEntity {
+@Entity('menuapp')
+export class MenuAppEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,30 +12,30 @@ export class UserAppEntity {
   name: string;
 
   @Column()
-  abbreviation: string;
+  description: string;
 
   @Column()
-  description: string;
+  abbreviation: string;
 
   @Column({default: false})
   active: boolean;
 
   @Column()
-  createdat: Date;
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updatedat: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;
 
-  @ManyToOne(type => RoleEntity, role => role.userapps)
+  @ManyToOne(type => RoleEntity, role => role.roleapps)
   role: RoleEntity;
 
-  @OneToMany(type => MenuEntity, menu => menu.userapp)
-  menus: UserAppEntity[];
+  @OneToMany(type => MenuEntity, menu => menu.menuapp)
+  menus: MenuEntity[];
 
 }
