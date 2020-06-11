@@ -4,7 +4,8 @@ import { MenuService } from './menu.service';
 import { MenuRO } from './menu.interface';
 import { MenuEntryRO } from './menu.interface';
 import { CreateMenuDto } from './dto';
-import { MenuEntity } from './menu.entity';
+import { MenuAppEntity } from './menuapp.entity';
+import { MenuEntryEntity } from './menuentry.entity';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 
 //import { User } from './user.decorator';
@@ -26,7 +27,7 @@ export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Get()
-  async findAll(): Promise<MenuEntity[]> {
+  async findAll(): Promise<MenuAppEntity[]> {
     return await this.menuService.findAll();
   }
 

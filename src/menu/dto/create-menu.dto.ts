@@ -5,13 +5,13 @@ export class CreateMenuDto {
   readonly id: number;
 
   @IsNotEmpty()
-  readonly appid: string;
+  name: string;
 
   @IsNotEmpty()
-  readonly caption: string;
+  description: string;
 
   @IsNotEmpty()
-  readonly sortid: string;
+  abbreviation: string;
 
 }
 

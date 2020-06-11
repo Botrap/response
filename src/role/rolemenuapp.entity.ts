@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { RoleAppEntity } from './roleapp.entity';
-import { MenuEntity } from '../menu/menu.entity';
+import { MenuEntity } from '../menu/menuentry.entity';
 
-@Entity('roleapp')
+@Entity('roleappmenu')
 export class RoleAppMenuEntity {
 
   @PrimaryGeneratedColumn()

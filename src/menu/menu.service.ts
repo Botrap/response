@@ -5,8 +5,7 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';
 import { validate } from 'class-validator';
 
-import { MenuEntity } from './menu.entity';
-import { MenuEntryEntity } from './menuentry.entity';
+import { MenuAppEntity } from './menuapp.entity';
 
 import { MenuRO } from './menu.interface';
 import { CreateMenuDto } from './dto';
@@ -14,15 +13,15 @@ import { CreateMenuDto } from './dto';
 @Injectable()
 export class MenuService {
   constructor(
-    @InjectRepository(MenuEntity)
-    private readonly menuRepository: Repository<MenuEntity>,
+    @InjectRepository(MenuAppEntity)
+    private readonly menuRepository: Repository<MenuAppEntity>,
   ) {}
 
-  async findAll(): Promise<MenuEntity[]> {
+  async findAll(): Promise<MenuAppEntity[]> {
     return await this.menuRepository.find();
   }
 
-  async findOne({id}: CreateMenuDto): Promise<MenuEntity> {
+  async findOne({id}: CreateMenuDto): Promise<MenuAppEntity> {
     const menu = await this.menuRepository.findOne({id});
     if (!menu) {
       return null;
@@ -33,13 +32,13 @@ export class MenuService {
   async create(dto: CreateMenuDto): Promise<MenuRO> {
 
     // check uniqueness of username/email
-    const {appid, caption, sortid} = dto;
+    const {name, description, abbreviation} = dto;
 
     // create new menu
-    let newMenu = new MenuEntity();
-    newMenu.appid = appid;
-    newMenu.caption = caption;
-    newMenu.sortid = sortid;
+    let newMenu = new MenuAppEntity();
+    newMenu.name = name;
+    newMenu.description = description;
+    newMenu.abbreviation = abbreviation;
 
     const errors = await validate(newMenu);
     if (errors.length > 0) {
@@ -52,7 +51,7 @@ export class MenuService {
     }
   }
 
-  async update(id: number, dto: CreateMenuDto): Promise<MenuEntity> {
+  async update(id: number, dto: CreateMenuDto): Promise<MenuAppEntity> {
     let toUpdate = await this.menuRepository.findOne(id);
 
     let updated = Object.assign(toUpdate, dto);
@@ -75,16 +74,18 @@ export class MenuService {
   }
 
 
-  private buildMenuRO(menu: MenuEntity) {
+  private buildMenuRO(menu: MenuAppEntity) {
     const MenuRO = {
       id: menu.id,
-      appid: menu.appid,
-      caption: menu.caption,
-      sortid: menu.sortid
+      appid: menu.name,
+      caption: menu.description,
+      sortid: menu.abbreviation
      
     };
 
     return {menu: MenuRO};
   }
 }
+
+
 

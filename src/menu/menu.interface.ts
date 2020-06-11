@@ -1,11 +1,12 @@
 import { UserData } from '../user/user.interface';
-import { MenuEntity } from './menu.entity';
+import { MenuAppEntity } from './menuapp.entity';
+import { MenuEntryEntity } from './menuentry.entity';
 
-interface MenuEntry {
+interface MenuAppEntry {
   body: string;
 }
 
-export interface MenuData {
+export interface MenuAppData {
 
     appid: string,
     caption: string,
@@ -19,9 +20,9 @@ export interface MenuData {
   }
   
   export interface MenuRO {
-    menu: MenuData;
+    menu: MenuAppData;
   }
 
   export interface MenuEntryRO {
-    menuentries: MenuEntry;
+    menuentries: MenuEntryEntity;
   }

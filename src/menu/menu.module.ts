@@ -2,11 +2,11 @@ import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/com
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { MenuService } from './menu.service';
-import { MenuEntity } from './menu.entity';
+import { MenuAppEntity } from './menuapp.entity';
 import { MenuController } from './menu.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MenuEntity])],
+  imports: [TypeOrmModule.forFeature([MenuAppEntity])],
   providers: [MenuService],
   controllers: [
     MenuController
