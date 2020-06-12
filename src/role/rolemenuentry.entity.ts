@@ -3,7 +3,7 @@ import { MenuEntryEntity } from '../menu/menuentry.entity';
 import { RoleMenuAppEntity } from '../role/rolemenuapp.entity';
 
 @Entity('rolemenuentry')
-export class RoleMenuEntity {
+export class RoleMenuEntryEntity {
 
   @PrimaryColumn()
   RoleMenuAppId: number;

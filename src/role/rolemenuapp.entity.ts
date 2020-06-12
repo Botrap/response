@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { RoleEntity } from './role.entity';
 import { MenuAppEntity } from '../menu/menuapp.entity';
-//import { RoleMenuEntity } from '../role/rolemenu.entity';
+import { RoleMenuEntryEntity } from '../role/rolemenuentry.entity';
 
 @Entity('rolemenuapp')
 export class RoleMenuAppEntity {
@@ -20,12 +20,9 @@ export class RoleMenuAppEntity {
 
   @OneToOne(type => MenuAppEntity)
   menuapp: MenuAppEntity;
-
-//
   
-  @OneToMany(type => RoleMenuAppEntity, rolemenuapp => rolemenuapp.id)
-  rolemenuappConnection: RoleMenuAppEntity;
-
+  @OneToMany(type => RoleMenuEntryEntity, rolemenuentry => rolemenuentry.MenuEntryId)
+  rolemenuappConnection: RoleMenuEntryEntity;
 
 
 }

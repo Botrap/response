@@ -1,6 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { MenuAppEntity } from './menuapp.entity';
-import { RoleMenuAppEntity } from '../role/rolemenuapp.entity';
 import { RoleMenuEntryEntity } from '../role/rolemenuentry.entity';
 
 @Entity('menuentry')
@@ -42,8 +41,12 @@ export class MenuEntryEntity {
   @ManyToOne(type => MenuAppEntity, menuapp => menuapp.menuentries)
   menuapp: MenuAppEntity;
 
-  @OneToMany(type => MenuEntryEntity, menuentry => menuentry.id)
-  menuentryConnection: MenuEntryEntity;
+  @OneToMany(type => RoleMenuEntryEntity, rolemenuentry => rolemenuentry.RoleMenuAppId)
+  menuentryConnection: RoleMenuEntryEntity;
+
+
+
+
 
 }
 
