@@ -9,8 +9,8 @@ export class RoleMenuAppEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  RoleId: number;
+  //@Column()
+  //RoleId: number;
 
   @Column()
   MenuAppId: number;
