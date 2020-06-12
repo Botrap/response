@@ -15,6 +15,7 @@ import {
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -25,6 +26,7 @@ export class GroupController {
 
 
   @Get()
+  @ApiBody({type: CreateGroupDto})
   async findAll(): Promise<GroupEntity[]> {
     return await this.groupService.findAll();
   }
@@ -41,6 +43,7 @@ export class GroupController {
 
   //@UsePipes(new ValidationPipe())
   @Post('group')
+  @ApiBody({type: CreateGroupDto})
   async create(@Body('group') groupData: CreateGroupDto) {
     return this.groupService.create(groupData);
   }

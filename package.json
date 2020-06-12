@@ -11,7 +11,8 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "jest --config=jest.json",
     "test:watch": "jest --watch --config=jest.json",
-    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage"
+    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
+    "compodoc": "npx compodoc -p tsconfig.json -s"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "typescript": "^3.9.3"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "@nestjs/cli": "^7.2.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.1.1",

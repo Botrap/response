@@ -14,7 +14,7 @@ export class ArticleEntity {
   @Column("nvarchar", { length: 100 })
   title: string;
 
-  @Column({default: ''})
+  @Column({nullable: true, default: ''})
   description: string;
 
   @Column({default: ''})
