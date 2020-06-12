@@ -7,7 +7,7 @@ export class ListEntryEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("nvarchar", { length: 50 })
   name: string;
 
   @Column({nullable: true})

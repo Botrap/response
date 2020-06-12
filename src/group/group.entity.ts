@@ -6,8 +6,8 @@ export class GroupEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
+  
+  @Column("nvarchar", { length: 100 })
   name: string;
 
   @Column({nullable: true})

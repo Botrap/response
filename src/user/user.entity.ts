@@ -30,13 +30,13 @@ export class UserEntity {
   active: boolean;
   
   @Column()
-  created: Date;
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updated: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;

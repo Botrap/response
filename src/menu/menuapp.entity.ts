@@ -8,13 +8,13 @@ export class MenuAppEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("nvarchar", { length: 50 })
   name: string;
 
   @Column({nullable: true})
   description: string;
 
-  @Column()
+  @Column("nvarchar", { length: 10 })
   abbreviation: string;
 
   @Column({default: false})

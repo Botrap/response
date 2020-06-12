@@ -6,17 +6,17 @@ export class TagEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("nvarchar", { length: 50 })
   tag: string;
 
   @Column()
-  created: Date;
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updated: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;

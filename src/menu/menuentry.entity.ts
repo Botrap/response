@@ -8,13 +8,13 @@ export class MenuEntryEntity {
   @PrimaryGeneratedColumn()
   id: number;
  
-  @Column()
+  @Column("nvarchar", { length: 10 })
   appid: string;
-
-  @Column({length: 10})
+  
+  @Column("nvarchar", { length: 50 })
   sortid: string;
 
-  @Column()
+  @Column("nvarchar", { length: 50 })
   caption: string;
 
   @Column({nullable: true})

@@ -10,7 +10,7 @@ export class RoleEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("nvarchar", { length: 50 })
   name: string;
 
   @Column({nullable: true})
@@ -30,7 +30,6 @@ export class RoleEntity {
 
   @Column()
   updatedby: number;
-
 
   // a user can have multiple roles on different sites so per site!
   @ManyToOne(type => UserEntity, user => user.roles)

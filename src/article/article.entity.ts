@@ -8,10 +8,10 @@ export class ArticleEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("nvarchar", { length: 100 })
   slug: string;
 
-  @Column()
+  @Column("nvarchar", { length: 100 })
   title: string;
 
   @Column({default: ''})
@@ -21,10 +21,16 @@ export class ArticleEntity {
   body: string;
 
   @Column()
-  created: Date;
+  createddate: Date;
 
   @Column()
-  updated: Date;
+  createdby: number;
+
+  @Column()
+  updateddate: Date;
+
+  @Column()
+  updatedby: number;
 
   @Column('simple-array')
   tagList: string[];

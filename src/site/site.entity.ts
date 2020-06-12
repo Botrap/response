@@ -11,7 +11,7 @@ export class SiteEntity {
   @Column()
   slug: string;
 
-  @Column()
+  @Column("nvarchar", { length: 100 })
   name: string;
 
   @Column({nullable: true})
@@ -24,13 +24,13 @@ export class SiteEntity {
   active: boolean;
 
   @Column()
-  createdat: Date;
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updatedat: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;

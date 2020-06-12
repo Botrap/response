@@ -12,20 +12,20 @@ export class ErrorLogEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column()
+  @Column("nvarchar", { length: 10 })
   errorcode: string;
 
-  @Column({nullable: true})
+  @Column("nvarchar",{length: 10 , nullable: true})
   errorcodehtml: string;
 
   @Column()
-  createdat: Date;
+  createddate: Date;
 
   @Column()
   createdby: number
 
   @Column()
-  updatedat: Date;
+  updateddate: Date;
 
   @Column()
   updatedby: number;
