@@ -1,27 +1,31 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
-import { RoleAppEntity } from './roleapp.entity';
-import { MenuEntity } from '../menu/menuentry.entity';
+import { RoleEntity } from './role.entity';
+import { MenuAppEntity } from '../menu/menuapp.entity';
+//import { RoleMenuEntity } from '../role/rolemenu.entity';
 
-@Entity('roleappmenu')
-export class RoleAppMenuEntity {
+@Entity('rolemenuapp')
+export class RoleMenuAppEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
 
-//  @Column()
-//  RoleId: number;
+  @Column()
+  RoleId: number;
 
   @Column()
-  AppId: number;
+  MenuAppId: number;
 
-  @Column()
-  MenuId: string;
+  @ManyToOne(type => RoleEntity, role => role.rolemenuapps)
+  role: RoleEntity;
 
-  @ManyToOne(type => RoleAppEntity, role => role.roleapps)
-  role: RoleAppEntity;
+  @OneToOne(type => MenuAppEntity)
+  menuapp: MenuAppEntity;
 
-// to approleid onetomany
-// to menuentry manytoone
-//from menu entry you get the application id!
+//
+  
+  @OneToMany(type => RoleMenuAppEntity, rolemenuapp => rolemenuapp.id)
+  rolemenuappConnection: RoleMenuAppEntity;
+
+
 
 }

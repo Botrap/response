@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany,
 import { UserEntity } from '../user/user.entity';
 import { SiteEntity } from '../site/site.entity';
 import { GroupEntity } from '../group/group.entity';
-import { RoleAppEntity } from './roleapp.entity';
+import { RoleMenuAppEntity } from './rolemenuapp.entity';
 
 @Entity('role')
 export class RoleEntity {
@@ -45,7 +45,8 @@ export class RoleEntity {
   groups: GroupEntity[];
 
   // a role has multiples app to be accessed
-  @OneToMany(type => RoleAppEntity, roleapp => roleapp.role)
-  roleapps: RoleAppEntity[];
+  @OneToMany(type => RoleMenuAppEntity, rolemenuapp => rolemenuapp.role)
+  rolemenuapps: RoleMenuAppEntity[];
+
 
 }
