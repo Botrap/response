@@ -13,7 +13,7 @@ export class RoleEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
 
   @Column({default: false})

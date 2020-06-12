@@ -16,7 +16,7 @@ export class CorporationEntity {
   @Column()
   costcenter: number;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
 
   @Column({default: false})

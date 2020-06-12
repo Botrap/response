@@ -10,11 +10,8 @@ export class GroupEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
-
-  //@Column({default: false})
-  //active: boolean;
 
   @Column()
   active: boolean = false;

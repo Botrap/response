@@ -17,6 +17,9 @@ export class MenuEntryEntity {
   @Column()
   caption: string;
 
+  @Column({nullable: true})
+  description: string;
+
   @Column({default: false})
   active: boolean;
 

@@ -9,13 +9,13 @@ export class ErrorLogEntity {
   @Column()
   siteid: number;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
 
   @Column()
   errorcode: string;
 
-  @Column()
+  @Column({nullable: true})
   errorcodehtml: string;
 
   @Column()

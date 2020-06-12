@@ -14,10 +14,10 @@ export class SiteEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({nullable: true})
   costcenter: number;
 
-  @Column()
+  @Column({nullable: true})
   description: string;
 
   @Column({default: false})
