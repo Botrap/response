@@ -13,19 +13,19 @@ export class GroupEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column()
-  active: boolean = false;
+  @Column({nullable: true, default: 1})
+  active: boolean = true;
 
-  @Column()
+  @Column({nullable: true})
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @Column({nullable: true})
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @ManyToOne(type => RoleEntity, role => role.groups)

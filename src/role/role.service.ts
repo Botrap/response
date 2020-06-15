@@ -30,7 +30,7 @@ export class RoleService {
 
   async create(dto: CreateRoleDto): Promise<RoleRO> {
 
-    // check uniqueness of username/email
+    // check uniqueness of role
     const {name, description} = dto;
 
     // create new role

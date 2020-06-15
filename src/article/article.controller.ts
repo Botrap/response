@@ -9,7 +9,9 @@ import { User } from '../user/user.decorator';
 import {
   ApiBearerAuth,
   ApiResponse,
-  ApiOperation, ApiTags,
+  ApiOperation, 
+  ApiTags,
+  ApiBody,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -20,26 +22,31 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @ApiOperation({ summary: 'Get all articles' })
-  @ApiResponse({ status: 200, description: 'Return all articles.'})
+  @ApiResponse({ status: 200, description: 'Returned all articles successfully.'})
   @Get()
   async findAll(@Query() query): Promise<ArticlesRO> {
     return await this.articleService.findAll(query);
   }
 
-
   @ApiOperation({ summary: 'Get article feed' })
-  @ApiResponse({ status: 200, description: 'Return article feed.'})
+  @ApiResponse({ status: 200, description: 'Returned article feed successfully.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Get('feed')
   async getFeed(@User('id') userId: number, @Query() query): Promise<ArticlesRO> {
     return await this.articleService.findFeed(userId, query);
   }
 
+  @ApiOperation({ summary: 'Get single article' })
+  @ApiResponse({ status: 200, description: 'Returned article successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Get(':slug')
   async findOne(@Param('slug') slug): Promise<ArticleRO> {
     return await this.articleService.findOne({slug});
   }
 
+  @ApiOperation({ summary: 'Get article comments' })
+  @ApiResponse({ status: 200, description: 'Returned article comments successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Get(':slug/comments')
   async findComments(@Param('slug') slug): Promise<CommentsRO> {
     return await this.articleService.findComments(slug);
@@ -48,6 +55,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Create article' })
   @ApiResponse({ status: 201, description: 'The article has been successfully created.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateArticleDto})
   @Post()
   async create(@User('id') userId: number, @Body('article') articleData: CreateArticleDto) {
     return this.articleService.create(userId, articleData);
@@ -56,6 +64,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Update article' })
   @ApiResponse({ status: 201, description: 'The article has been successfully updated.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateArticleDto})
   @Put(':slug')
   async update(@Param() params, @Body('article') articleData: CreateArticleDto) {
     // Todo: update slug also when title gets changed
@@ -65,6 +74,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Delete article' })
   @ApiResponse({ status: 201, description: 'The article has been successfully deleted.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateArticleDto})
   @Delete(':slug')
   async delete(@Param() params) {
     return this.articleService.delete(params.slug);
@@ -73,6 +83,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Create comment' })
   @ApiResponse({ status: 201, description: 'The comment has been successfully created.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateCommentDto})
   @Post(':slug/comments')
   async createComment(@Param('slug') slug, @Body('comment') commentData: CreateCommentDto) {
     return await this.articleService.addComment(slug, commentData);
@@ -81,6 +92,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Delete comment' })
   @ApiResponse({ status: 201, description: 'The article has been successfully deleted.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateCommentDto})
   @Delete(':slug/comments/:id')
   async deleteComment(@Param() params) {
     const {slug, id} = params;

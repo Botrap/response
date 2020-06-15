@@ -31,7 +31,7 @@ export class CorporationService {
 
   async create(dto: CreateCorporationDto): Promise<CorporationRO> {
 
-    // check uniqueness of username/email
+    // check uniqueness of corporation
     const {name, costcenter, description} = dto;
 
     // create new corporation

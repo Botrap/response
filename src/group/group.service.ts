@@ -30,12 +30,13 @@ export class GroupService {
 
   async create(dto: CreateGroupDto): Promise<GroupRO> {
 
-    // check uniqueness of username/email
-    const {name} = dto;
+    // check uniqueness of group
+    const {name, description} = dto;
 
     // create new group
     let newGroup = new GroupEntity();
     newGroup.name = name;
+    newGroup.description = description;
    
     const errors = await validate(newGroup);
     if (errors.length > 0) {
@@ -55,21 +56,24 @@ export class GroupService {
     return await this.groupRepository.save(updated);
   }
 
-  async delete(id: number): Promise<DeleteResult> {
-    return await this.groupRepository.delete({ id: id});
-  }
+ // {id}
+ async delete(id: number): Promise<DeleteResult> {
+   return await this.groupRepository.delete({id});
+ }
+
+// RWQ end crud
+
 
   async findById(id: number): Promise<GroupRO>{
     const group = await this.groupRepository.findOne(id);
 
     if (!group) {
       const errors = {Group: ' not found'};
-      throw new HttpException({errors}, 401);
+      throw new HttpException({errors}, 404);
     }
 
     return this.buildGroupRO(group);
   }
-
 
   private buildGroupRO(group: GroupEntity) {
     const GroupRO = {

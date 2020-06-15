@@ -7,10 +7,12 @@ export class CreateGroupDto {
   @ApiProperty({type: Number, description: 'id'})
   readonly id: number;
 
-  @IsNotEmpty()
+//  @IsNotEmpty()
   @ApiProperty({type: String, description: 'name'})
   readonly name: string;
 
+  @ApiProperty({type: String, description: 'description'})
+  readonly description: string;
 
 }
 

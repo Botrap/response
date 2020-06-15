@@ -9,46 +9,63 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 //import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
-
 import {
   ApiBearerAuth,
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
+//Tags is Swagger header, Controller is path
 @ApiTags('roles')
-@Controller('roles')
+@Controller('role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-
-  @Get()
+  @ApiOperation({ summary: 'Get all roles' })
+  @ApiResponse({ status: 200, description: 'Returned all roles successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @Get('findall')
   async findAll(): Promise<RoleEntity[]> {
     return await this.roleService.findAll();
   }
 
-  @Get('role')
+  @ApiOperation({ summary: 'Get single role' })
+  @ApiResponse({ status: 200, description: 'Returned role successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @Get('find')
   async findMList(@Param('id') id: number): Promise<RoleRO> {
     return await this.roleService.findById(id);
   }
 
-  @Put('role')
-  async update(@Param('id') id: number, @Body('role') roleData: CreateRoleDto) {
-    return await this.roleService.update(id, roleData);
-  }
-
+  @ApiOperation({ summary: 'Create role' })
+  @ApiResponse({ status: 200, description: 'Created role successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateRoleDto})
   //@UsePipes(new ValidationPipe())
-  @Post('role')
+  @Post('create')
   async create(@Body('role') roleData: CreateRoleDto) {
     return this.roleService.create(roleData);
   }
 
-  @Delete('role/:slug')
+  @ApiOperation({ summary: 'Update role' })
+  @ApiResponse({ status: 200, description: 'Updated role successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateRoleDto})
+  @Put('update')
+  async update(@Param('id') id: number, @Body('role') roleData: CreateRoleDto) {
+    return await this.roleService.update(id, roleData);
+  }
+
+  @ApiOperation({ summary: 'Delete role' })
+  @ApiResponse({ status: 200, description: 'Deleted role successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateRoleDto})
+  @Delete('delete')
   async delete(@Param() params) {
     return await this.roleService.delete(params.slug);
   }
-
  
 }

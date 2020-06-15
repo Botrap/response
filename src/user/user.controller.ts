@@ -8,7 +8,11 @@ import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 import {
-  ApiBearerAuth, ApiTags
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation, 
+  ApiTags,
+  ApiBody,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -18,27 +22,28 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
+  @ApiOperation({ summary: 'Get user' })
+  @ApiResponse({ status: 200, description: 'Return user.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Get('user')
   async findMe(@User('email') email: string): Promise<UserRO> {
     return await this.userService.findByEmail(email);
   }
 
-  @Put('user')
-  async update(@User('id') userId: number, @Body('user') userData: UpdateUserDto) {
-    return await this.userService.update(userId, userData);
-  }
-
+  @ApiOperation({ summary: 'Create user' })
+  @ApiResponse({ status: 200, description: 'Returned user successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateUserDto})
   @UsePipes(new ValidationPipe())
   @Post('users')
   async create(@Body('user') userData: CreateUserDto) {
     return this.userService.create(userData);
   }
 
-  @Delete('users/:slug')
-  async delete(@Param() params) {
-    return await this.userService.delete(params.slug);
-  }
-
+  @ApiOperation({ summary: 'Login user' })
+  @ApiResponse({ status: 200, description: 'User logged in successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: LoginUserDto})
   @UsePipes(new ValidationPipe())
   @Post('users/login')
   async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
@@ -52,4 +57,23 @@ export class UserController {
     const user = {email, token, username, bio, image};
     return {user}
   }
+
+  @ApiOperation({ summary: 'Update user' })
+  @ApiResponse({ status: 200, description: 'Updated user successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: UpdateUserDto})
+  @Put('user')
+  async update(@User('id') userId: number, @Body('user') userData: UpdateUserDto) {
+    return await this.userService.update(userId, userData);
+  }
+
+  @ApiOperation({ summary: 'Delete user' })
+  @ApiResponse({ status: 200, description: 'Deleted user successfully.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiBody({type: CreateUserDto})
+  @Delete('users/:slug')
+  async delete(@Param() params) {
+    return await this.userService.delete(params.slug);
+  }
+
 }
