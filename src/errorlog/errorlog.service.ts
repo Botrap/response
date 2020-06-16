@@ -20,6 +20,17 @@ export class ErrorlogService {
     return await this.ErrorLogRepository.find();
   }
 
+  async findById(id: number): Promise<ErrorLogRO>{
+    const errorlog = await this.ErrorLogRepository.findOne(id);
+
+    if (!errorlog) {
+      const errors = {ErrorLog: ' not found'};
+      throw new HttpException({errors}, 401);
+    }
+
+    return this.buildErrorLogRO(errorlog);
+  }
+
   async create(dto: CreateErrorLogDto): Promise<ErrorLogRO> {
 
     // check uniqueness of group
@@ -43,10 +54,8 @@ export class ErrorlogService {
     }
   }
 
-
   async update(id: number, dto: CreateErrorLogDto): Promise<ErrorLogEntity> {
     let toUpdate = await this.ErrorLogRepository.findOne(id);
-
     let updated = Object.assign(toUpdate, dto);
     const errorlog  = this.ErrorLogRepository.save(updated);
 
@@ -54,38 +63,25 @@ export class ErrorlogService {
       const errors = {ErrorLog: ' not found'};
       throw new HttpException({errors}, 401);
     }
-
     return await this.ErrorLogRepository.save(updated);
-
   }
-
-  async delete(id: number): Promise<DeleteResult> {
-    return await this.ErrorLogRepository.delete({ id: id});
-  }
-
-  async findById(id: number): Promise<ErrorLogRO>{
-    const errorlog = await this.ErrorLogRepository.findOne(id);
-
-    if (!errorlog) {
-      const errors = {ErrorLog: ' not found'};
-      throw new HttpException({errors}, 401);
-    }
-
-    return this.buildErrorLogRO(errorlog);
-  }
-
+ 
+   async delete(id: number): Promise<DeleteResult> {
+     return await this.ErrorLogRepository.delete({ id: id});
+   }
 
   private buildErrorLogRO(errorlog: ErrorLogEntity) {
     const ErrorLogRO = {
-
-    siteid: errorlog.siteid,
-    description: errorlog.description,
-    errorcode: errorlog.errorcode,
-    errorcodehtml: errorlog.errorcodehtml
-     
+      id: errorlog.id,
+      siteid: errorlog.siteid,
+      description: errorlog.description,
+      errorcode: errorlog.errorcode,
+      errorcodehtml: errorlog.errorcodehtml
+    
     };
 
     return {errorlog: ErrorLogRO};
   }
 }
+
 

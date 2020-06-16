@@ -27,47 +27,57 @@ export class ListController {
   constructor(private readonly listService: ListService) {}
 
   @ApiOperation({ summary: 'Get all lists' })
-  @ApiResponse({ status: 200, description: 'Returned all lists successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Get()
   async findAll(): Promise<ListEntity[]> {
     return await this.listService.findAll();
   }
 
   @ApiOperation({ summary: 'Get single list' })
-  @ApiResponse({ status: 200, description: 'Returned list successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @Get('list')
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Get(':id')
   async findMList(@Param('id') id: number): Promise<ListRO> {
     return await this.listService.findById(id);
   }
 
   @ApiOperation({ summary: 'Create list' })
-  @ApiResponse({ status: 200, description: 'Created list successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateListDto})
   //@UsePipes(new ValidationPipe())
-  @Post('list')
-  async create(@Body('list') listData: CreateListDto) {
+  @Post(':id')
+  async create(@Body() listData: CreateListDto) {
     return this.listService.create(listData);
   }
 
   @ApiOperation({ summary: 'Update list' })
-  @ApiResponse({ status: 200, description: 'Updated list successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateListDto})
-  @Put('list')
-  async update(@Param('id') id: number, @Body('list') listData: CreateListDto) {
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() listData: CreateListDto) {
     return await this.listService.update(id, listData);
   }
 
   @ApiOperation({ summary: 'Delete list' })
-  @ApiResponse({ status: 200, description: 'Deleted list successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateListDto})
-  @Delete('list/:slug')
-  async delete(@Param() params) {
-    return await this.listService.delete(params.slug);
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.listService.delete(id);
   }
 
   // @Get(':slug/listentries')

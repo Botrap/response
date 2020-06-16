@@ -19,8 +19,10 @@ export class TagController {
   constructor(private readonly tagService: TagService) {}
 
   @ApiOperation({ summary: 'Get all tags' })
-  @ApiResponse({ status: 200, description: 'Returned all tags successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Get()
   async findAll(): Promise<TagEntity[]> {
     return await this.tagService.findAll();

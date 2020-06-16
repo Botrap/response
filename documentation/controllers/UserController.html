@@ -137,14 +137,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UsePipes(new ValidationPipe())<br />@Post(&#x27;users&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned user successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateUserDto})<br />@UsePipes(new ValidationPipe())<br />@Post(&#x27;users&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/user/user.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/user/user.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -216,14 +216,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;users/:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deleted user successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateUserDto})<br />@Delete(&#x27;users/:slug&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/user/user.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/user/user.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -291,14 +291,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;user&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Return user.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;user&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/user/user.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/user/user.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -370,14 +370,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UsePipes(new ValidationPipe())<br />@Post(&#x27;users/login&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Login user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;User logged in successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: LoginUserDto})<br />@UsePipes(new ValidationPipe())<br />@Post(&#x27;users/login&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/user/user.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/user/user.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -449,14 +449,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;user&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updated user successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: UpdateUserDto})<br />@Put(&#x27;user&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/user/user.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/user/user.controller.ts:66</a></div>
                 </td>
             </tr>
 
@@ -529,7 +529,11 @@ import { User } from &#x27;./user.decorator&#x27;;
 import { ValidationPipe } from &#x27;../shared/pipes/validation.pipe&#x27;;
 
 import {
-  ApiBearerAuth, ApiTags
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation, 
+  ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -539,27 +543,28 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
+  @ApiOperation({ summary: &#x27;Get user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Return user.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get(&#x27;user&#x27;)
   async findMe(@User(&#x27;email&#x27;) email: string): Promise&lt;UserRO&gt; {
     return await this.userService.findByEmail(email);
   }
 
-  @Put(&#x27;user&#x27;)
-  async update(@User(&#x27;id&#x27;) userId: number, @Body(&#x27;user&#x27;) userData: UpdateUserDto) {
-    return await this.userService.update(userId, userData);
-  }
-
+  @ApiOperation({ summary: &#x27;Create user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned user successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateUserDto})
   @UsePipes(new ValidationPipe())
   @Post(&#x27;users&#x27;)
   async create(@Body(&#x27;user&#x27;) userData: CreateUserDto) {
     return this.userService.create(userData);
   }
 
-  @Delete(&#x27;users/:slug&#x27;)
-  async delete(@Param() params) {
-    return await this.userService.delete(params.slug);
-  }
-
+  @ApiOperation({ summary: &#x27;Login user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;User logged in successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: LoginUserDto})
   @UsePipes(new ValidationPipe())
   @Post(&#x27;users/login&#x27;)
   async login(@Body(&#x27;user&#x27;) loginUserDto: LoginUserDto): Promise&lt;UserRO&gt; {
@@ -573,6 +578,25 @@ export class UserController {
     const user &#x3D; {email, token, username, bio, image};
     return {user}
   }
+
+  @ApiOperation({ summary: &#x27;Update user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Updated user successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: UpdateUserDto})
+  @Put(&#x27;user&#x27;)
+  async update(@User(&#x27;id&#x27;) userId: number, @Body(&#x27;user&#x27;) userData: UpdateUserDto) {
+    return await this.userService.update(userId, userData);
+  }
+
+  @ApiOperation({ summary: &#x27;Delete user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Deleted user successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateUserDto})
+  @Delete(&#x27;users/:slug&#x27;)
+  async delete(@Param() params) {
+    return await this.userService.delete(params.slug);
+  }
+
 }
 </code></pre>
     </div>

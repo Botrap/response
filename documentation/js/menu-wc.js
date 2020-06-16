@@ -155,15 +155,30 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/ErrorlogModule.html" data-type="entity-link">ErrorlogModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' : 'data-target="#xs-controllers-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' :
+                                            'id="xs-controllers-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' }>
+                                            <li class="link">
+                                                <a href="controllers/ErrorlogController.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ErrorlogController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-ErrorlogModule-995c10de9d467d2295474983fd60d6f0"' : 'data-target="#xs-injectables-links-module-ErrorlogModule-995c10de9d467d2295474983fd60d6f0"' }>
+                                        'data-target="#injectables-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' : 'data-target="#xs-injectables-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ErrorlogModule-995c10de9d467d2295474983fd60d6f0"' :
-                                        'id="xs-injectables-links-module-ErrorlogModule-995c10de9d467d2295474983fd60d6f0"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' :
+                                        'id="xs-injectables-links-module-ErrorlogModule-c9ee5494a62f0c9d945492081c272342"' }>
                                         <li class="link">
                                             <a href="injectables/ErrorlogService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ErrorlogService</a>
@@ -591,9 +606,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateMenuEntryDto.html" data-type="entity-link">CreateMenuEntryDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CreateMenuEntryPointDto.html" data-type="entity-link">CreateMenuEntryPointDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/CreateRoleAppDto.html" data-type="entity-link">CreateRoleAppDto</a>
                             </li>
                             <li class="link">
@@ -747,6 +759,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/CorporationRO.html" data-type="entity-link">CorporationRO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ErrorLogData.html" data-type="entity-link">ErrorLogData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ErrorLogRO.html" data-type="entity-link">ErrorLogRO</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GroupData.html" data-type="entity-link">GroupData</a>

@@ -136,13 +136,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />
+                                @IsNotEmpty()<br />@ApiProperty({type: Number, description: &#x27;costcenter&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/site/dto/create-site.dto.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/site/dto/create-site.dto.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -173,13 +173,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />
+                                @IsNotEmpty()<br />@ApiProperty({type: String, description: &#x27;description&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/site/dto/create-site.dto.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/site/dto/create-site.dto.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -205,9 +205,18 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ApiProperty({type: Number, description: &#x27;id&#x27;})<br />
+                            </code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/site/dto/create-site.dto.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/site/dto/create-site.dto.ts:6</a></div>
                             </td>
                         </tr>
 
@@ -238,13 +247,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />
+                                @IsNotEmpty()<br />@ApiProperty({type: String, description: &#x27;name&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/site/dto/create-site.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/site/dto/create-site.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -264,24 +273,31 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty } from &#x27;class-validator&#x27;;
-
+import {ApiProperty} from &#x27;@nestjs/swagger&#x27;;
 export class CreateSiteDto {
 
+  @ApiProperty({type: Number, description: &#x27;id&#x27;})
   readonly id: number;
 
   @IsNotEmpty()
+  @ApiProperty({type: String, description: &#x27;name&#x27;})
   readonly name: string;
 
   @IsNotEmpty()
+  @ApiProperty({type: Number, description: &#x27;costcenter&#x27;})
   costcenter: number;
 
   @IsNotEmpty()
+  @ApiProperty({type: String, description: &#x27;description&#x27;})
   readonly description: string;
 
 }
 
 //costcenter: number;
 // must &gt; 0
+
+
+
 </code></pre>
     </div>
 </div>

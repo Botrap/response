@@ -193,8 +193,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/group/group.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/group/group.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -337,8 +337,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/group/group.service.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/group/group.service.ts:60</a></div>
                 </td>
             </tr>
 
@@ -450,8 +450,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/group/group.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/group/group.service.ts:67</a></div>
                 </td>
             </tr>
 
@@ -593,8 +593,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/group/group.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/group/group.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -691,12 +691,13 @@ export class GroupService {
 
   async create(dto: CreateGroupDto): Promise&lt;GroupRO&gt; {
 
-    // check uniqueness of username/email
-    const {name} &#x3D; dto;
+    // check uniqueness of group
+    const {name, description} &#x3D; dto;
 
     // create new group
     let newGroup &#x3D; new GroupEntity();
     newGroup.name &#x3D; name;
+    newGroup.description &#x3D; description;
    
     const errors &#x3D; await validate(newGroup);
     if (errors.length &gt; 0) {
@@ -716,21 +717,24 @@ export class GroupService {
     return await this.groupRepository.save(updated);
   }
 
-  async delete(id: number): Promise&lt;DeleteResult&gt; {
-    return await this.groupRepository.delete({ id: id});
-  }
+ // {id}
+ async delete(id: number): Promise&lt;DeleteResult&gt; {
+   return await this.groupRepository.delete({id});
+ }
+
+// RWQ end crud
+
 
   async findById(id: number): Promise&lt;GroupRO&gt;{
     const group &#x3D; await this.groupRepository.findOne(id);
 
     if (!group) {
       const errors &#x3D; {Group: &#x27; not found&#x27;};
-      throw new HttpException({errors}, 401);
+      throw new HttpException({errors}, 404);
     }
 
     return this.buildGroupRO(group);
   }
-
 
   private buildGroupRO(group: GroupEntity) {
     const GroupRO &#x3D; {

@@ -145,7 +145,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                            <i>Default value : </i><code>true</code>
                         </td>
                     </tr>
                     <tr>
@@ -153,7 +153,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @Column({nullable: true, default: 1})<br />
                             </code>
                         </td>
                     </tr>
@@ -189,7 +189,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @Column({nullable: true})<br />
                             </code>
                         </td>
                     </tr>
@@ -225,7 +225,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @Column({nullable: true})<br />
                             </code>
                         </td>
                     </tr>
@@ -405,7 +405,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @Column({nullable: true})<br />
                             </code>
                         </td>
                     </tr>
@@ -441,7 +441,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @Column({nullable: true})<br />
                             </code>
                         </td>
                     </tr>
@@ -481,19 +481,19 @@ export class GroupEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column()
-  active: boolean &#x3D; false;
+  @Column({nullable: true, default: 1})
+  active: boolean &#x3D; true;
 
-  @Column()
+  @Column({nullable: true})
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @Column({nullable: true})
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @ManyToOne(type &#x3D;&gt; RoleEntity, role &#x3D;&gt; role.groups)

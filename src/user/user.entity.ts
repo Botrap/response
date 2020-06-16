@@ -5,6 +5,10 @@ import { ArticleEntity } from '../article/article.entity';
 import { RoleEntity } from '../role/role.entity';
 
 @Entity('user')
+
+// import BaseEntity from typorm
+//export class UserEntity extends BaseEntity{
+
 export class UserEntity {
 
   @PrimaryGeneratedColumn()

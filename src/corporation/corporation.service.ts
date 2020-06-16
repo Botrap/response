@@ -13,20 +13,30 @@ import { CreateCorporationDto } from './dto';
 export class CorporationService {
   constructor(
     @InjectRepository(CorporationEntity)
-    private readonly corporationRepository: Repository<CorporationEntity>, 
+    private readonly CorporationRepository: Repository<CorporationEntity>, 
   ) {}
 
-  
   async findAll(): Promise<CorporationEntity[]> {
-    return await this.corporationRepository.find();
+    return await this.CorporationRepository.find();
   }
 
   async findOne({id}: CreateCorporationDto): Promise<CorporationEntity> {
-    const corporation = await this.corporationRepository.findOne({id});
+    const corporation = await this.CorporationRepository.findOne({id});
     if (!corporation) {
       return null;
     }
     return null;
+  }
+
+  async findById(id: number): Promise<CorporationRO>{
+    const corporation = await this.CorporationRepository.findOne(id);
+
+    if (!corporation) {
+      const errors = {Corporation: ' not found'};
+      throw new HttpException({errors}, 401);
+    }
+
+    return this.buildCorporationRO(corporation);
   }
 
   async create(dto: CreateCorporationDto): Promise<CorporationRO> {
@@ -46,33 +56,26 @@ export class CorporationService {
       throw new HttpException({message: 'Input data validation failed', _errors}, HttpStatus.BAD_REQUEST);
 
     } else {
-      const savedCorporation = await this.corporationRepository.save(newCorporation);
+      const savedCorporation = await this.CorporationRepository.save(newCorporation);
       return this.buildCorporationRO(savedCorporation);
     }
   }
 
   async update(id: number, dto: CreateCorporationDto): Promise<CorporationEntity> {
-    let toUpdate = await this.corporationRepository.findOne(id);
-
+    let toUpdate = await this.CorporationRepository.findOne(id);
     let updated = Object.assign(toUpdate, dto);
-    return await this.corporationRepository.save(updated);
+    const errorlog  = this.CorporationRepository.save(updated);
+
+    if (!errorlog) {
+      const errors = {ErrorLog: ' not found'};
+      throw new HttpException({errors}, 401);
+    }
+    return await this.CorporationRepository.save(updated);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return await this.corporationRepository.delete({ id: id});
+    return await this.CorporationRepository.delete({ id: id});
   }
-
-  async findById(id: number): Promise<CorporationRO>{
-    const corporation = await this.corporationRepository.findOne(id);
-
-    if (!corporation) {
-      const errors = {Corporation: ' not found'};
-      throw new HttpException({errors}, 401);
-    }
-
-    return this.buildCorporationRO(corporation);
-  }
-
 
   private buildCorporationRO(corporation: CorporationEntity) {
     const CorporationRO = {
@@ -87,4 +90,5 @@ export class CorporationService {
     return {corporation: CorporationRO};
   }
 }
+
 

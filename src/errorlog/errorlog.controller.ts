@@ -19,57 +19,63 @@ import {
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiTags('errorlogs')
+@ApiTags('errorlog')
 @Controller('errorlog')
 export class ErrorlogController {
   constructor(private readonly errorlogservice: ErrorlogService) {}
 
   @ApiOperation({ summary: 'Get all errorlogs' })
-  @ApiResponse({ status: 200, description: 'Returned all errorlogs successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Get()
   async findAll(): Promise<ErrorLogEntity[]> {
     return await this.errorlogservice.findAll();
   }
 
   @ApiOperation({ summary: 'Get single errorlog' })
-  @ApiResponse({ status: 200, description: 'Returned errorlog successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @Get('errorlog')
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Get(':id')
    async findMList(@Param('id') id: number): Promise<ErrorLogRO> {
     return await this.errorlogservice.findById(id);
   }
 
   @ApiOperation({ summary: 'Create errorlog' })
-  @ApiResponse({ status: 200, description: 'Created errorlog successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateErrorLogDto})
   //@UsePipes(new ValidationPipe())
-  @Post('errorlog')
-  @ApiBody({type: CreateErrorLogDto})
-  async create(@Body('errorlog') errorlogData: CreateErrorLogDto) {
+  @Post(':id')
+  async create(@Body() errorlogData: CreateErrorLogDto) {
     return this.errorlogservice.create(errorlogData);
   }
 
-  @ApiOperation({ summary: 'Change errorlog' })
-  @ApiResponse({ status: 200, description: 'Changed errorlog successfully.'})
+  @ApiOperation({ summary: 'Update errorlog' })
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateErrorLogDto})
-  @Put('errorlog')
-  @ApiBody({type: CreateErrorLogDto})
-  async update(@Param('id') id: number, @Body('errorlog') errorlogData: CreateErrorLogDto) {
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() errorlogData: CreateErrorLogDto) {
     return await this.errorlogservice.update(id, errorlogData);
   }
 
   @ApiOperation({ summary: 'Delete errorlog' })
   @ApiResponse({ status: 200, description: 'Deleted errorlog successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiBody({type: CreateErrorLogDto})
-  @Delete('errorlog/:slug')
-  @ApiBody({type: CreateErrorLogDto})
-  async delete(@Param() params) {
-    return await this.errorlogservice.delete(params.slug);
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.errorlogservice.delete(id);
   }
 
- 
+
 }

@@ -18,16 +18,17 @@ export class ErrorLogEntity {
   @Column("nvarchar",{length: 10 , nullable: true})
   errorcodehtml: string;
 
-  @Column()
+  //@Column()
+  @Column({nullable: true})
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @Column({nullable: true})
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
 }

@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;list&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create list&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Created list successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateListDto})<br />@Post(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/list/list.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/list/list.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -222,14 +222,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;list/:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete list&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deleted list successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateListDto})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/list/list.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/list/list.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -297,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all lists&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all lists successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/list/list.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/list/list.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -345,14 +345,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;list&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get single list&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned list successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/list/list.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/list/list.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -424,14 +424,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;list&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update list&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updated list successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateListDto})<br />@Put(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/list/list.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/list/list.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -512,6 +512,7 @@ import {
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -521,28 +522,46 @@ import {
 export class ListController {
   constructor(private readonly listService: ListService) {}
 
+  @ApiOperation({ summary: &#x27;Get all lists&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all lists successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get()
   async findAll(): Promise&lt;ListEntity[]&gt; {
     return await this.listService.findAll();
   }
 
-  @Get(&#x27;list&#x27;)
+  @ApiOperation({ summary: &#x27;Get single list&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned list successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;:id&#x27;)
   async findMList(@Param(&#x27;id&#x27;) id: number): Promise&lt;ListRO&gt; {
     return await this.listService.findById(id);
   }
 
-  @Put(&#x27;list&#x27;)
-  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;list&#x27;) listData: CreateListDto) {
-    return await this.listService.update(id, listData);
-  }
-
+  @ApiOperation({ summary: &#x27;Create list&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Created list successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateListDto})
   //@UsePipes(new ValidationPipe())
-  @Post(&#x27;list&#x27;)
+  @Post(&#x27;:id&#x27;)
   async create(@Body(&#x27;list&#x27;) listData: CreateListDto) {
     return this.listService.create(listData);
   }
 
-  @Delete(&#x27;list/:slug&#x27;)
+  @ApiOperation({ summary: &#x27;Update list&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Updated list successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateListDto})
+  @Put(&#x27;:id&#x27;)
+  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;list&#x27;) listData: CreateListDto) {
+    return await this.listService.update(id, listData);
+  }
+
+  @ApiOperation({ summary: &#x27;Delete list&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Deleted list successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateListDto})
+  @Delete(&#x27;:id&#x27;)
   async delete(@Param() params) {
     return await this.listService.delete(params.slug);
   }

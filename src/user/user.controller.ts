@@ -5,6 +5,7 @@ import { UserRO } from './user.interface';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from './dto';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { User } from './user.decorator';
+import { UserEntity } from './user.entity';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 import {
@@ -22,17 +23,32 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
-  @ApiOperation({ summary: 'Get user' })
-  @ApiResponse({ status: 200, description: 'Return user.'})
+  @ApiOperation({ summary: 'Get all user' })
+  @ApiResponse({ status: 200, description: 'Found all user successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Get('users')
+  async findAll(): Promise<UserEntity[]> {
+    return await this.userService.findAll();
+  }
+
+  @ApiOperation({ summary: 'Get user' })
+  @ApiResponse({ status: 200, description: 'Found user successfully.'})
+  @ApiResponse({ status: 401, description: 'Not authorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @Get('user')
   async findMe(@User('email') email: string): Promise<UserRO> {
     return await this.userService.findByEmail(email);
   }
 
   @ApiOperation({ summary: 'Create user' })
-  @ApiResponse({ status: 200, description: 'Returned user successfully.'})
+  @ApiResponse({ status: 200, description: 'Created user successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateUserDto})
   @UsePipes(new ValidationPipe())
   @Post('users')
@@ -41,8 +57,10 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'Login user' })
-  @ApiResponse({ status: 200, description: 'User logged in successfully.'})
+  @ApiResponse({ status: 200, description: 'Login user successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: LoginUserDto})
   @UsePipes(new ValidationPipe())
   @Post('users/login')
@@ -60,7 +78,9 @@ export class UserController {
 
   @ApiOperation({ summary: 'Update user' })
   @ApiResponse({ status: 200, description: 'Updated user successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: UpdateUserDto})
   @Put('user')
   async update(@User('id') userId: number, @Body('user') userData: UpdateUserDto) {
@@ -69,7 +89,9 @@ export class UserController {
 
   @ApiOperation({ summary: 'Delete user' })
   @ApiResponse({ status: 200, description: 'Deleted user successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateUserDto})
   @Delete('users/:slug')
   async delete(@Param() params) {

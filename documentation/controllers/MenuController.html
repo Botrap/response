@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;menu&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create menu&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Created menu successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateMenuDto})<br />@Post(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/menu/menu.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/menu/menu.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -222,14 +222,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;menu/:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete menu&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deleted menu successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateMenuDto})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/menu/menu.controller.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/menu/menu.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -297,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all menus&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all menus successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/menu/menu.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/menu/menu.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -345,14 +345,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;menu&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get single menu&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned menu successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/menu/menu.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/menu/menu.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -424,14 +424,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;menu&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update menu&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updated menu successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateMenuDto})<br />@Put(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/menu/menu.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/menu/menu.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -507,12 +507,12 @@ import { HttpException } from &#x27;@nestjs/common/exceptions/http.exception&#x2
 //import { User } from &#x27;./user.decorator&#x27;;
 import { ValidationPipe } from &#x27;../shared/pipes/validation.pipe&#x27;;
 
-
 import {
   ApiBearerAuth,
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -522,28 +522,46 @@ import {
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
+  @ApiOperation({ summary: &#x27;Get all menus&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all menus successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })  
   @Get()
   async findAll(): Promise&lt;MenuAppEntity[]&gt; {
     return await this.menuService.findAll();
   }
 
-  @Get(&#x27;menu&#x27;)
+  @ApiOperation({ summary: &#x27;Get single menu&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned menu successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;:id&#x27;)
   async findMMenu(@Param(&#x27;id&#x27;) id: number): Promise&lt;MenuRO&gt; {
     return await this.menuService.findById(id);
   }
 
-  @Put(&#x27;menu&#x27;)
-  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;menu&#x27;) menuData: CreateMenuDto) {
-    return await this.menuService.update(id, menuData);
-  }
-
+  @ApiOperation({ summary: &#x27;Create menu&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Created menu successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateMenuDto})
   //@UsePipes(new ValidationPipe())
-  @Post(&#x27;menu&#x27;)
+  @Post(&#x27;:id&#x27;)
   async create(@Body(&#x27;menu&#x27;) menuData: CreateMenuDto) {
     return this.menuService.create(menuData);
   }
 
-  @Delete(&#x27;menu/:slug&#x27;)
+  @ApiOperation({ summary: &#x27;Update menu&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Updated menu successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateMenuDto})
+  @Put(&#x27;:id&#x27;)
+  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;menu&#x27;) menuData: CreateMenuDto) {
+    return await this.menuService.update(id, menuData);
+  }
+
+  @ApiOperation({ summary: &#x27;Delete menu&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Deleted menu successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateMenuDto})
+  @Delete(&#x27;:id&#x27;)
   async delete(@Param() params) {
     return await this.menuService.delete(params.slug);
   }

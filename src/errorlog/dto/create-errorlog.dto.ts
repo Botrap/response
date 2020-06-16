@@ -1,9 +1,10 @@
 import { IsNotEmpty, IsNumber, IsNumberOptions } from 'class-validator';
 import {ApiProperty} from '@nestjs/swagger';
+
 export class CreateErrorLogDto {
 
-  //@ApiProperty({type: Number, description: 'id'})
-  //readonly id: number;
+  @ApiProperty({type: Number, description: 'id'})
+  readonly id: number;
 
   @IsNumber()
   @ApiProperty({type: Number, description: 'siteid'})
@@ -19,6 +20,9 @@ export class CreateErrorLogDto {
 
   @ApiProperty({type: String, description: 'errorcodehtml'})
   readonly errorcodehtml: string;
+
+
+
 
 
 }

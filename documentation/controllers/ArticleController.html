@@ -167,14 +167,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully created.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully created.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateArticleDto})<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/article/article.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/article/article.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -258,14 +258,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create comment&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The comment has been successfully created.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Post(&#x27;:slug/comments&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create comment&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The comment has been successfully created.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateCommentDto})<br />@Post(&#x27;:slug/comments&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/article/article.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/article/article.controller.ts:88</a></div>
                 </td>
             </tr>
 
@@ -348,14 +348,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully deleted.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Delete(&#x27;:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully deleted.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateArticleDto})<br />@Delete(&#x27;:slug&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/article/article.controller.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/article/article.controller.ts:79</a></div>
                 </td>
             </tr>
 
@@ -423,14 +423,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete comment&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully deleted.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Delete(&#x27;:slug/comments/:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete comment&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully deleted.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateCommentDto})<br />@Delete(&#x27;:slug/comments/:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/article/article.controller.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/article/article.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -504,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/article/article.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/article/article.controller.ts:106</a></div>
                 </td>
             </tr>
 
@@ -588,14 +588,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get all articles&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Return all articles.&#x27;})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all articles&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all articles successfully.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/article/article.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/article/article.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -663,14 +663,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:slug/comments&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get article comments&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned article comments successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:slug/comments&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/article/article.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/article/article.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -738,14 +738,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get single article&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned article successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:slug&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/article/article.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/article/article.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -813,14 +813,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get article feed&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Return article feed.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;feed&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get article feed&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned article feed successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;feed&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/article/article.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/article/article.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -909,8 +909,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/article/article.controller.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/article/article.controller.ts:114</a></div>
                 </td>
             </tr>
 
@@ -993,14 +993,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully updated.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Put(&#x27;:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update article&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The article has been successfully updated.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateArticleDto})<br />@Put(&#x27;:slug&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/article/article.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/article/article.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -1073,7 +1073,9 @@ import { User } from &#x27;../user/user.decorator&#x27;;
 import {
   ApiBearerAuth,
   ApiResponse,
-  ApiOperation, ApiTags,
+  ApiOperation, 
+  ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -1084,26 +1086,31 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @ApiOperation({ summary: &#x27;Get all articles&#x27; })
-  @ApiResponse({ status: 200, description: &#x27;Return all articles.&#x27;})
+  @ApiResponse({ status: 200, description: &#x27;Returned all articles successfully.&#x27;})
   @Get()
   async findAll(@Query() query): Promise&lt;ArticlesRO&gt; {
     return await this.articleService.findAll(query);
   }
 
-
   @ApiOperation({ summary: &#x27;Get article feed&#x27; })
-  @ApiResponse({ status: 200, description: &#x27;Return article feed.&#x27;})
+  @ApiResponse({ status: 200, description: &#x27;Returned article feed successfully.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get(&#x27;feed&#x27;)
   async getFeed(@User(&#x27;id&#x27;) userId: number, @Query() query): Promise&lt;ArticlesRO&gt; {
     return await this.articleService.findFeed(userId, query);
   }
 
+  @ApiOperation({ summary: &#x27;Get single article&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned article successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get(&#x27;:slug&#x27;)
   async findOne(@Param(&#x27;slug&#x27;) slug): Promise&lt;ArticleRO&gt; {
     return await this.articleService.findOne({slug});
   }
 
+  @ApiOperation({ summary: &#x27;Get article comments&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned article comments successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get(&#x27;:slug/comments&#x27;)
   async findComments(@Param(&#x27;slug&#x27;) slug): Promise&lt;CommentsRO&gt; {
     return await this.articleService.findComments(slug);
@@ -1112,6 +1119,7 @@ export class ArticleController {
   @ApiOperation({ summary: &#x27;Create article&#x27; })
   @ApiResponse({ status: 201, description: &#x27;The article has been successfully created.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateArticleDto})
   @Post()
   async create(@User(&#x27;id&#x27;) userId: number, @Body(&#x27;article&#x27;) articleData: CreateArticleDto) {
     return this.articleService.create(userId, articleData);
@@ -1120,6 +1128,7 @@ export class ArticleController {
   @ApiOperation({ summary: &#x27;Update article&#x27; })
   @ApiResponse({ status: 201, description: &#x27;The article has been successfully updated.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateArticleDto})
   @Put(&#x27;:slug&#x27;)
   async update(@Param() params, @Body(&#x27;article&#x27;) articleData: CreateArticleDto) {
     // Todo: update slug also when title gets changed
@@ -1129,6 +1138,7 @@ export class ArticleController {
   @ApiOperation({ summary: &#x27;Delete article&#x27; })
   @ApiResponse({ status: 201, description: &#x27;The article has been successfully deleted.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateArticleDto})
   @Delete(&#x27;:slug&#x27;)
   async delete(@Param() params) {
     return this.articleService.delete(params.slug);
@@ -1137,6 +1147,7 @@ export class ArticleController {
   @ApiOperation({ summary: &#x27;Create comment&#x27; })
   @ApiResponse({ status: 201, description: &#x27;The comment has been successfully created.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateCommentDto})
   @Post(&#x27;:slug/comments&#x27;)
   async createComment(@Param(&#x27;slug&#x27;) slug, @Body(&#x27;comment&#x27;) commentData: CreateCommentDto) {
     return await this.articleService.addComment(slug, commentData);
@@ -1145,6 +1156,7 @@ export class ArticleController {
   @ApiOperation({ summary: &#x27;Delete comment&#x27; })
   @ApiResponse({ status: 201, description: &#x27;The article has been successfully deleted.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateCommentDto})
   @Delete(&#x27;:slug/comments/:id&#x27;)
   async deleteComment(@Param() params) {
     const {slug, id} &#x3D; params;

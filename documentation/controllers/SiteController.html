@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;site&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create single site&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Created site successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateSiteDto})<br />@Post(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/site/site.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/site/site.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -222,14 +222,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;site/:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete site&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deleted site successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateSiteDto})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/site/site.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/site/site.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -297,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all sites&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all sites successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/site/site.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/site/site.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -345,14 +345,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;site&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get site&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned site successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/site/site.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/site/site.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -424,14 +424,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;site&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update site&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updated site successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateSiteDto})<br />@Put(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/site/site.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/site/site.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -506,12 +506,12 @@ import { HttpException } from &#x27;@nestjs/common/exceptions/http.exception&#x2
 //import { User } from &#x27;./user.decorator&#x27;;
 import { ValidationPipe } from &#x27;../shared/pipes/validation.pipe&#x27;;
 
-
 import {
   ApiBearerAuth,
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -520,29 +520,46 @@ import {
 export class SiteController {
   constructor(private readonly siteService: SiteService) {}
 
-
+  @ApiOperation({ summary: &#x27;Get all sites&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all sites successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get()
   async findAll(): Promise&lt;SiteEntity[]&gt; {
     return await this.siteService.findAll();
   }
 
-  @Get(&#x27;site&#x27;)
+  @ApiOperation({ summary: &#x27;Get site&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned site successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;:id&#x27;)
   async findMList(@Param(&#x27;id&#x27;) id: number): Promise&lt;SiteRO&gt; {
     return await this.siteService.findById(id);
   }
 
-  @Put(&#x27;site&#x27;)
-  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;site&#x27;) siteData: CreateSiteDto) {
-    return await this.siteService.update(id, siteData);
-  }
-
+  @ApiOperation({ summary: &#x27;Create single site&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Created site successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateSiteDto})
   //@UsePipes(new ValidationPipe())
-  @Post(&#x27;site&#x27;)
+  @Post(&#x27;:id&#x27;)
   async create(@Body(&#x27;site&#x27;) siteData: CreateSiteDto) {
     return this.siteService.create(siteData);
   }
 
-  @Delete(&#x27;site/:slug&#x27;)
+  @ApiOperation({ summary: &#x27;Update site&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Updated site successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateSiteDto})
+  @Put(&#x27;:id&#x27;)
+  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;site&#x27;) siteData: CreateSiteDto) {
+    return await this.siteService.update(id, siteData);
+  }
+
+  @ApiOperation({ summary: &#x27;Delete site&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Deleted site successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateSiteDto})
+  @Delete(&#x27;:id&#x27;)
   async delete(@Param() params) {
     return await this.siteService.delete(params.slug);
   }

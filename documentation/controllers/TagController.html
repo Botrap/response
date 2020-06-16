@@ -127,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all tags&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all tags successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/tag/tag.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/tag/tag.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -160,7 +160,11 @@ import { TagEntity } from &#x27;./tag.entity&#x27;;
 import { TagService } from &#x27;./tag.service&#x27;;
 
 import {
-  ApiBearerAuth, ApiTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation, 
+  ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
@@ -170,6 +174,9 @@ export class TagController {
 
   constructor(private readonly tagService: TagService) {}
 
+  @ApiOperation({ summary: &#x27;Get all tags&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all tags successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get()
   async findAll(): Promise&lt;TagEntity[]&gt; {
     return await this.tagService.findAll();

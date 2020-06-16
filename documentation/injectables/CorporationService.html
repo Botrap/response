@@ -121,7 +121,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(corporationRepository: <a href="../classes/CorporationEntity.html">Repository<CorporationEntity></a>)</code>
+<code>constructor(CorporationRepository: <a href="../classes/CorporationEntity.html">Repository<CorporationEntity></a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -144,7 +144,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>corporationRepository</td>
+                                                        <td>CorporationRepository</td>
                                                   
                                                         <td>
                                                                         <code><a href="../classes/CorporationEntity.html" target="_self" >Repository&lt;CorporationEntity&gt;</a></code>
@@ -193,8 +193,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/corporation/corporation.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/corporation/corporation.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -265,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/corporation/corporation.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/corporation/corporation.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -337,8 +337,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/corporation/corporation.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/corporation/corporation.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -409,8 +409,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/corporation/corporation.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/corporation/corporation.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -450,8 +450,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/corporation/corporation.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/corporation/corporation.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -522,8 +522,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/corporation/corporation.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/corporation/corporation.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -593,8 +593,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/corporation/corporation.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/corporation/corporation.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -674,25 +674,35 @@ import { CreateCorporationDto } from &#x27;./dto&#x27;;
 export class CorporationService {
   constructor(
     @InjectRepository(CorporationEntity)
-    private readonly corporationRepository: Repository&lt;CorporationEntity&gt;, 
+    private readonly CorporationRepository: Repository&lt;CorporationEntity&gt;, 
   ) {}
 
-  
   async findAll(): Promise&lt;CorporationEntity[]&gt; {
-    return await this.corporationRepository.find();
+    return await this.CorporationRepository.find();
   }
 
   async findOne({id}: CreateCorporationDto): Promise&lt;CorporationEntity&gt; {
-    const corporation &#x3D; await this.corporationRepository.findOne({id});
+    const corporation &#x3D; await this.CorporationRepository.findOne({id});
     if (!corporation) {
       return null;
     }
     return null;
   }
 
+  async findById(id: number): Promise&lt;CorporationRO&gt;{
+    const corporation &#x3D; await this.CorporationRepository.findOne(id);
+
+    if (!corporation) {
+      const errors &#x3D; {Corporation: &#x27; not found&#x27;};
+      throw new HttpException({errors}, 401);
+    }
+
+    return this.buildCorporationRO(corporation);
+  }
+
   async create(dto: CreateCorporationDto): Promise&lt;CorporationRO&gt; {
 
-    // check uniqueness of username/email
+    // check uniqueness of corporation
     const {name, costcenter, description} &#x3D; dto;
 
     // create new corporation
@@ -707,33 +717,29 @@ export class CorporationService {
       throw new HttpException({message: &#x27;Input data validation failed&#x27;, _errors}, HttpStatus.BAD_REQUEST);
 
     } else {
-      const savedCorporation &#x3D; await this.corporationRepository.save(newCorporation);
+      const savedCorporation &#x3D; await this.CorporationRepository.save(newCorporation);
       return this.buildCorporationRO(savedCorporation);
     }
   }
 
   async update(id: number, dto: CreateCorporationDto): Promise&lt;CorporationEntity&gt; {
-    let toUpdate &#x3D; await this.corporationRepository.findOne(id);
+    let toUpdate &#x3D; await this.CorporationRepository.findOne(id);
 
     let updated &#x3D; Object.assign(toUpdate, dto);
-    return await this.corporationRepository.save(updated);
-  }
+    const errorlog  &#x3D; this.CorporationRepository.save(updated);
 
-  async delete(id: number): Promise&lt;DeleteResult&gt; {
-    return await this.corporationRepository.delete({ id: id});
-  }
-
-  async findById(id: number): Promise&lt;CorporationRO&gt;{
-    const corporation &#x3D; await this.corporationRepository.findOne(id);
-
-    if (!corporation) {
-      const errors &#x3D; {Corporation: &#x27; not found&#x27;};
+    if (!errorlog) {
+      const errors &#x3D; {ErrorLog: &#x27; not found&#x27;};
       throw new HttpException({errors}, 401);
     }
 
-    return this.buildCorporationRO(corporation);
+    return await this.CorporationRepository.save(updated);
+
   }
 
+  async delete(id: number): Promise&lt;DeleteResult&gt; {
+    return await this.CorporationRepository.delete({ id: id});
+  }
 
   private buildCorporationRO(corporation: CorporationEntity) {
     const CorporationRO &#x3D; {
@@ -748,6 +754,7 @@ export class CorporationService {
     return {corporation: CorporationRO};
   }
 }
+
 
 </code></pre>
     </div>

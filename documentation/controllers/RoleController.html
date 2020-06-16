@@ -61,7 +61,7 @@
                 <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <code>roles</code>
+                <code>role</code>
             </p>
 
 
@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;role&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create role&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Created role successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateRoleDto})<br />@Post(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/role/role.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/role/role.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -222,14 +222,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;role/:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete role&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deleted role successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateRoleDto})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/role/role.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/role/role.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -297,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all roles&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all roles successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;findall&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/role/role.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/role/role.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -345,14 +345,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;role&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get single role&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned role successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/role/role.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/role/role.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -424,14 +424,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;role&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update role&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updated role successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateRoleDto})<br />@Put(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/role/role.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/role/role.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -505,47 +505,64 @@ import { HttpException } from &#x27;@nestjs/common/exceptions/http.exception&#x2
 //import { User } from &#x27;./user.decorator&#x27;;
 import { ValidationPipe } from &#x27;../shared/pipes/validation.pipe&#x27;;
 
-
 import {
   ApiBearerAuth,
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
+//Tags is Swagger header, Controller is path
 @ApiTags(&#x27;roles&#x27;)
-@Controller(&#x27;roles&#x27;)
+@Controller(&#x27;role&#x27;)
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-
-  @Get()
+  @ApiOperation({ summary: &#x27;Get all roles&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all roles successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;findall&#x27;)
   async findAll(): Promise&lt;RoleEntity[]&gt; {
     return await this.roleService.findAll();
   }
 
-  @Get(&#x27;role&#x27;)
+  @ApiOperation({ summary: &#x27;Get single role&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned role successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;:id&#x27;)
   async findMList(@Param(&#x27;id&#x27;) id: number): Promise&lt;RoleRO&gt; {
     return await this.roleService.findById(id);
   }
 
-  @Put(&#x27;role&#x27;)
-  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;role&#x27;) roleData: CreateRoleDto) {
-    return await this.roleService.update(id, roleData);
-  }
-
+  @ApiOperation({ summary: &#x27;Create role&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Created role successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateRoleDto})
   //@UsePipes(new ValidationPipe())
-  @Post(&#x27;role&#x27;)
+  @Post(&#x27;:id&#x27;)
   async create(@Body(&#x27;role&#x27;) roleData: CreateRoleDto) {
     return this.roleService.create(roleData);
   }
 
-  @Delete(&#x27;role/:slug&#x27;)
+  @ApiOperation({ summary: &#x27;Update role&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Updated role successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateRoleDto})
+  @Put(&#x27;:id&#x27;)
+  async update(@Param(&#x27;id&#x27;) id: number, @Body(&#x27;role&#x27;) roleData: CreateRoleDto) {
+    return await this.roleService.update(id, roleData);
+  }
+
+  @ApiOperation({ summary: &#x27;Delete role&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Deleted role successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @ApiBody({type: CreateRoleDto})
+  @Delete(&#x27;:id&#x27;)
   async delete(@Param() params) {
     return await this.roleService.delete(params.slug);
   }
-
  
 }
 </code></pre>

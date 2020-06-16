@@ -5,10 +5,9 @@ import { GroupRO } from './group.interface';
 import { CreateGroupDto } from './dto';
 import { GroupEntity } from './group.entity';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-
-//import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
+//import { User } from './user.decorator';
 
 import {
   ApiBearerAuth,
@@ -39,7 +38,7 @@ export class GroupController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
-  @Get('group')
+  @Get(':id')
    async findMList(@Param('id') id: number): Promise<GroupRO> {
     return await this.groupService.findById(id);
   }
@@ -51,25 +50,20 @@ export class GroupController {
   @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateGroupDto})
   //@UsePipes(new ValidationPipe())
-  @Post('group')
-  @ApiBody({type: CreateGroupDto})
-  async create(@Body('group') groupData: CreateGroupDto) {
-    console.log('Group Data:');
-    console.log(groupData);
-     
-    return this.groupService.create(groupData);
+  @Post(':id')
+  async create(@Body() errorlogData: CreateGroupDto) {
+    return this.groupService.create(errorlogData);
   }
-  @ApiOperation({ summary: 'Change group' })
+
+  @ApiOperation({ summary: 'Update group' })
   @ApiResponse({ status: 200, description: 'Changed group successfully.'})
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateGroupDto})
-  //@ApiOperation()
-  @Put('group')
-  @ApiBody({type: CreateGroupDto})
-  async update(@Param('id') id: number, @Body('group') groupData: CreateGroupDto) {
-    return await this.groupService.update(id, groupData);
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() errorlogData: CreateGroupDto) {
+    return await this.groupService.update(id, errorlogData);
   }
 
   @ApiOperation({ summary: 'Delete group' })
@@ -77,8 +71,7 @@ export class GroupController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
-  //@ApiBody({type: CreateGroupDto})
-  @Delete('delete')
+  @Delete(':id')
   async delete(@Param('id') id: number) {
     this.groupService.delete(id);
   }

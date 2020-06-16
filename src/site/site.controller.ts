@@ -25,48 +25,59 @@ export class SiteController {
   constructor(private readonly siteService: SiteService) {}
 
   @ApiOperation({ summary: 'Get all sites' })
-  @ApiResponse({ status: 200, description: 'Returned all sites successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Get()
   async findAll(): Promise<SiteEntity[]> {
     return await this.siteService.findAll();
   }
 
   @ApiOperation({ summary: 'Get site' })
-  @ApiResponse({ status: 200, description: 'Returned site successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @Get('site')
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Get(':id')
   async findMList(@Param('id') id: number): Promise<SiteRO> {
     return await this.siteService.findById(id);
   }
 
   @ApiOperation({ summary: 'Create single site' })
-  @ApiResponse({ status: 200, description: 'Created site successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateSiteDto})
   //@UsePipes(new ValidationPipe())
-  @Post('site')
-  async create(@Body('site') siteData: CreateSiteDto) {
+  @Post(':id')
+  async create(@Body() siteData: CreateSiteDto) {
     return this.siteService.create(siteData);
   }
 
   @ApiOperation({ summary: 'Update site' })
-  @ApiResponse({ status: 200, description: 'Updated site successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateSiteDto})
-  @Put('site')
-  async update(@Param('id') id: number, @Body('site') siteData: CreateSiteDto) {
-    return await this.siteService.update(id, siteData);
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() errorlogData: CreateSiteDto) {
+    return await this.siteService.update(id, errorlogData);
   }
+
 
   @ApiOperation({ summary: 'Delete site' })
-  @ApiResponse({ status: 200, description: 'Deleted site successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateSiteDto})
-  @Delete('site/:slug')
-  async delete(@Param() params) {
-    return await this.siteService.delete(params.slug);
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.siteService.delete(id);
   }
 
- 
+
 }

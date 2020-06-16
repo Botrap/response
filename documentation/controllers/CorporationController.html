@@ -95,7 +95,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#update">update</a>
+                                <a href="#findMList">findMList</a>
                             </li>
                         </ul>
                     </td>
@@ -139,7 +139,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create corporation&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The corporation has been successfully created.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create corporation&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The corporation created successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiBody({type: CreateCorporationDto})<br />@Post(&#x27;corporation&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -210,7 +210,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(params)</code>
+                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -218,14 +218,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete corporation&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The corporation has been successfully deleted.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Delete(&#x27;:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete corporation&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The corporation delted successfully.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Not found.&#x27;})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/corporation/corporation.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/corporation/corporation.controller.ts:66</a></div>
                 </td>
             </tr>
 
@@ -239,12 +239,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>params</td>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -293,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get all corporations&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned all corporations successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/corporation/corporation.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/corporation/corporation.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -320,20 +324,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="update"></a>
+                    <a name="findMList"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            update
+                            findMList
                         </b>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findMList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(params, corporationData: <a href="../classes/CreateCorporationDto.html">CreateCorporationDto</a>)</code>
+                    <code>findMList(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -341,14 +345,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update corporation&#x27;})<br />@ApiResponse({status: 201, description: &#x27;The corporation has been successfully updated.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Put(&#x27;:slug&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get single corporation&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returned corporation successfully.&#x27;})<br />@ApiResponse({status: 403, description: &#x27;Forbidden.&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/corporation/corporation.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/corporation/corporation.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -368,20 +372,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>params</td>
+                                    <td>id</td>
                                     <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>corporationData</td>
-                                    <td>
-                                                <code><a href="../classes/CreateCorporationDto.html" target="_self" >CreateCorporationDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -396,7 +389,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/CorporationRO.html" target="_self" >Promise&lt;CorporationRO&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -425,58 +418,64 @@ import {
   ApiResponse,
   ApiOperation, 
   ApiTags,
+  ApiBody,
 } from &#x27;@nestjs/swagger&#x27;;
 
 @ApiBearerAuth()
 @ApiTags(&#x27;corporations&#x27;)
 @Controller(&#x27;corporations&#x27;)
 export class CorporationController {
+  constructor(private readonly corporationservice: CorporationService) {}
 
-  constructor(private readonly corporationService: CorporationService) {}
-
-
- // @Get(&#x27;corporation&#x27;)
- // async findMe(@Corporation(&#x27;email&#x27;) email: string): Promise&lt;CorporationRO&gt; {
- //   return await this.corporationService.findOne({id; any});
- // }
-
-
+  @ApiOperation({ summary: &#x27;Get all corporations&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned all corporations successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
   @Get()
   async findAll(): Promise&lt;CorporationEntity[]&gt; {
-    return await this.corporationService.findAll();
+    return await this.corporationservice.findAll();
   }
 
-  // @Get(&#x27;:slug&#x27;)
-  // async findOne(@Param(&#x27;slug&#x27;) slug): Promise&lt;CorporationRO&gt; {
-  //   return await this.corporationService.findOne({slug});
-  // }
+  @ApiOperation({ summary: &#x27;Get single corporation&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Returned corporation successfully.&#x27;})
+  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  @Get(&#x27;:id&#x27;)
+   async findMList(@Param(&#x27;id&#x27;) id: number): Promise&lt;CorporationRO&gt; {
+    return await this.corporationservice.findById(id);
+  }
 
   @ApiOperation({ summary: &#x27;Create corporation&#x27; })
-  @ApiResponse({ status: 201, description: &#x27;The corporation has been successfully created.&#x27;})
+  @ApiResponse({ status: 201, description: &#x27;The corporation created successfully.&#x27;})
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
-  @Post()
+  @ApiBody({type: CreateCorporationDto})
+  @Post(&#x27;corporation&#x27;)
   async create(@Body(&#x27;corporation&#x27;) corporationData: CreateCorporationDto) {
-    return this.corporationService.create(corporationData);
+    return this.corporationservice.create(corporationData);
   }
 
-  @ApiOperation({ summary: &#x27;Update corporation&#x27; })
-  @ApiResponse({ status: 201, description: &#x27;The corporation has been successfully updated.&#x27;})
-  @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
-  @Put(&#x27;:slug&#x27;)
-  async update(@Param() params, @Body(&#x27;corporation&#x27;) corporationData: CreateCorporationDto) {
-    return this.corporationService.update(params.slug, corporationData);
-  }
+  // @ApiOperation({ summary: &#x27;Update corporation&#x27; })
+  // @ApiResponse({ status: 201, description: &#x27;The corporation updated successfully.&#x27;})
+  // @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
+  // @ApiBody({type: CreateCorporationDto})
+  // @Put(&#x27;:id&#x27;)
+  // async update(@Param(&#x27;id&#x27;) params, @Body() corporationData: CreateCorporationDto) {
+  //   return this.corporationservice.update(id, corporationData);
+  // }
 
   @ApiOperation({ summary: &#x27;Delete corporation&#x27; })
-  @ApiResponse({ status: 201, description: &#x27;The corporation has been successfully deleted.&#x27;})
+  @ApiResponse({ status: 201, description: &#x27;The corporation delted successfully.&#x27;})
+  @ApiResponse({ status: 401, description: &#x27;Unauthorized.&#x27; })
   @ApiResponse({ status: 403, description: &#x27;Forbidden.&#x27; })
-  @Delete(&#x27;:slug&#x27;)
-  async delete(@Param() params) {
-    return this.corporationService.delete(params.slug);
+  @ApiResponse({ status: 404, description: &#x27;Not found.&#x27; })
+  //@ApiBody({type: CreateCorporationDto})
+  @Delete(&#x27;:id&#x27;)
+  async delete(@Param(&#x27;id&#x27;) id: number) {
+    return this.corporationservice.delete(id);
+
   }
 
+}
 
-}</code></pre>
+</code></pre>
     </div>
 </div>
 

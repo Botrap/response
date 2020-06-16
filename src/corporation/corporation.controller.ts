@@ -4,8 +4,6 @@ import { CorporationService } from './corporation.service';
 import { CreateCorporationDto } from './dto';
 import { CorporationRO } from './corporation.interface';
 import { CorporationEntity } from './corporation.entity';
-
-//import { CommentsRO } from './corporation.interface';
 import { User } from '../user/user.decorator';
 
 import {
@@ -20,57 +18,61 @@ import {
 @ApiTags('corporations')
 @Controller('corporations')
 export class CorporationController {
-
-  constructor(private readonly corporationService: CorporationService) {}
-
- // @Get('corporation')
- // async findMe(@Corporation('email') email: string): Promise<CorporationRO> {
- //   return await this.corporationService.findOne({id; any});
- // }
+  constructor(private readonly corporationservice: CorporationService) {}
 
   @ApiOperation({ summary: 'Get all corporations' })
-  @ApiResponse({ status: 200, description: 'Returned all corporations successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Get()
   async findAll(): Promise<CorporationEntity[]> {
-    return await this.corporationService.findAll();
+    return await this.corporationservice.findAll();
   }
 
-
-  // @ApiOperation({ summary: 'Get single corporation' })
-  // @ApiResponse({ status: 200, description: 'Returned corporation successfully.'})
-  // @ApiResponse({ status: 403, description: 'Forbidden.' })
-  // @Get(':slug')
-  // async findOne(@Param('slug') slug): Promise<CorporationRO> {
-  //   return await this.corporationService.findOne({slug});
-  // }
+  @ApiOperation({ summary: 'Get single corporation' })
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  @Get(':id')
+   async findMList(@Param('id') id: number): Promise<CorporationRO> {
+    return await this.corporationservice.findById(id);
+  }
 
   @ApiOperation({ summary: 'Create corporation' })
-  @ApiResponse({ status: 201, description: 'The corporation created successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateCorporationDto})
-  @Post()
+  @Post(':id')
   async create(@Body('corporation') corporationData: CreateCorporationDto) {
-    return this.corporationService.create(corporationData);
+    return this.corporationservice.create(corporationData);
   }
 
-  @ApiOperation({ summary: 'Update corporation' })
-  @ApiResponse({ status: 201, description: 'The corporation updated successfully.'})
+  @ApiOperation({ summary: 'Update errcorporationorlog' })
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @ApiBody({type: CreateCorporationDto})
-  @Put(':slug')
-  async update(@Param() params, @Body('corporation') corporationData: CreateCorporationDto) {
-    return this.corporationService.update(params.slug, corporationData);
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() errorlogData: CreateCorporationDto) {
+    return await this.corporationservice.update(id, errorlogData);
   }
 
   @ApiOperation({ summary: 'Delete corporation' })
-  @ApiResponse({ status: 201, description: 'The corporation delted successfully.'})
+  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiBody({type: CreateCorporationDto})
-  @Delete(':slug')
-  async delete(@Param() params) {
-    return this.corporationService.delete(params.slug);
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  //@ApiBody({type: CreateCorporationDto})
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.corporationservice.delete(id);
+
   }
 
-
 }
+
