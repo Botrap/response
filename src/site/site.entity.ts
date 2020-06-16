@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { CorporationEntity } from '../corporation/corporation.entity';
 import { RoleEntity } from '../role/role.entity';
 
@@ -7,9 +7,6 @@ export class SiteEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  slug: string;
 
   @Column("nvarchar", { length: 100 })
   name: string;
@@ -20,19 +17,19 @@ export class SiteEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({default: false})
+  @Column({default: true})
   active: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @ManyToOne(type => CorporationEntity, corporation => corporation.sites)

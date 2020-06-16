@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn,  } from 'typeorm';
 
 @Entity('tag')
 export class TagEntity {
@@ -9,16 +9,19 @@ export class TagEntity {
   @Column("nvarchar", { length: 50 })
   tag: string;
 
-  @Column()
+  @Column({default: true})
+  active: boolean;
+
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
 }

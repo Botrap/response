@@ -20,25 +20,25 @@ export class MenuEntryEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({default: false})
-  active: boolean;
-
   @Column()
   action: string;
 
   @Column()
   mouseover: string;
 
+  @Column({default: true})
+  active: boolean;
+
   @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
   @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @ManyToOne(type => MenuAppEntity, menuapp => menuapp.menuentries)

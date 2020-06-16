@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn,  JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { SiteEntity } from '../site/site.entity';
 
 @Entity('corporation')
@@ -19,19 +19,19 @@ export class CorporationEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({default: false})
+  @Column({default: true})
   active: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
-  createdby: number;
+  @Column({nullable: true})
+  createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @OneToMany(type => SiteEntity, site => site.corporation)

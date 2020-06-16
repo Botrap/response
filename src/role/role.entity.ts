@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { UserEntity } from '../user/user.entity';
 import { SiteEntity } from '../site/site.entity';
 import { GroupEntity } from '../group/group.entity';
@@ -16,19 +16,19 @@ export class RoleEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({default: false})
+  @Column({default: true})
   active: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   // a user can have multiple roles on different sites so per site!
@@ -49,3 +49,4 @@ export class RoleEntity {
 
 
 }
+

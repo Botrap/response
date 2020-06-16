@@ -26,9 +26,10 @@ export class SiteController {
 
   @ApiOperation({ summary: 'Get all sites' })
   @ApiResponse({ status: 200, description: 'Created group successfully.'})
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 401, description: 'Not authorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @Get()
   async findAll(): Promise<SiteEntity[]> {
     return await this.siteService.findAll();
@@ -36,19 +37,21 @@ export class SiteController {
 
   @ApiOperation({ summary: 'Get site' })
   @ApiResponse({ status: 200, description: 'Created group successfully.'})
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 401, description: 'Not authorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @Get(':id')
   async findMList(@Param('id') id: number): Promise<SiteRO> {
     return await this.siteService.findById(id);
   }
 
   @ApiOperation({ summary: 'Create single site' })
-  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 201, description: 'Created group successfully.'})
+  @ApiResponse({ status: 400, description: 'Wrong Format/Data.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @ApiBody({type: CreateSiteDto})
   //@UsePipes(new ValidationPipe())
   @Post(':id')
@@ -57,10 +60,11 @@ export class SiteController {
   }
 
   @ApiOperation({ summary: 'Update site' })
-  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 200, description: 'Created errorlog successfully.',, response = Participant.class})
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @ApiBody({type: CreateSiteDto})
   @Put(':id')
   async update(@Param('id') id: number, @Body() errorlogData: CreateSiteDto) {
@@ -69,10 +73,12 @@ export class SiteController {
 
 
   @ApiOperation({ summary: 'Delete site' })
-  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 200, description: 'Deleted errorlog successfully.'})
+  @ApiResponse({ status: 204, description: 'Deleted errorlog successfully.'})
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @ApiBody({type: CreateSiteDto})
   @Delete(':id')
   async delete(@Param('id') id: number) {

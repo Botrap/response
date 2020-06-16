@@ -26,9 +26,10 @@ export class ErrorlogController {
 
   @ApiOperation({ summary: 'Get all errorlogs' })
   @ApiResponse({ status: 200, description: 'Created group successfully.'})
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 401, description: 'Not authorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @Get()
   async findAll(): Promise<ErrorLogEntity[]> {
     return await this.errorlogservice.findAll();
@@ -36,19 +37,21 @@ export class ErrorlogController {
 
   @ApiOperation({ summary: 'Get single errorlog' })
   @ApiResponse({ status: 200, description: 'Created group successfully.'})
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 401, description: 'Not authorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @Get(':id')
    async findMList(@Param('id') id: number): Promise<ErrorLogRO> {
     return await this.errorlogservice.findById(id);
   }
 
   @ApiOperation({ summary: 'Create errorlog' })
-  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 201, description: 'Created group successfully.'})
+  @ApiResponse({ status: 400, description: 'Wrong Format/Data.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @ApiBody({type: CreateErrorLogDto})
   //@UsePipes(new ValidationPipe())
   @Post(':id')
@@ -57,10 +60,11 @@ export class ErrorlogController {
   }
 
   @ApiOperation({ summary: 'Update errorlog' })
-  @ApiResponse({ status: 200, description: 'Created group successfully.'})
+  @ApiResponse({ status: 200, description: 'Created errorlog successfully.'})
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @ApiBody({type: CreateErrorLogDto})
   @Put(':id')
   async update(@Param('id') id: number, @Body() errorlogData: CreateErrorLogDto) {
@@ -69,9 +73,11 @@ export class ErrorlogController {
 
   @ApiOperation({ summary: 'Delete errorlog' })
   @ApiResponse({ status: 200, description: 'Deleted errorlog successfully.'})
+  @ApiResponse({ status: 204, description: 'Deleted errorlog successfully.'})
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({ status: 500, description: 'Failure.' })
   @Delete(':id')
   async delete(@Param('id') id: number) {
     return this.errorlogservice.delete(id);

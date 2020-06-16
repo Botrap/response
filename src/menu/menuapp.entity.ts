@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { RoleMenuAppEntity } from '../role/rolemenuapp.entity';
 import { MenuEntryEntity } from './menuentry.entity';
 
@@ -17,19 +17,19 @@ export class MenuAppEntity {
   @Column("nvarchar", { length: 10 })
   abbreviation: string;
 
-  @Column({default: false})
+  @Column({default: true})
   active: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @OneToMany(type => MenuEntryEntity, menu => menu.menuapp)

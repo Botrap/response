@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn  } from 'typeorm';
 import { RoleEntity } from '../role/role.entity';
 
 @Entity('group')
@@ -13,16 +13,16 @@ export class GroupEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({nullable: true, default: 1})
-  active: boolean = true;
+  @Column({default: true})
+  active: boolean;
 
-  @Column({nullable: true})
+  @CreateDateColumn()
   createddate: Date;
 
   @Column({nullable: true})
   createdby: number
 
-  @Column({nullable: true})
+  @UpdateDateColumn()
   updateddate: Date;
 
   @Column({nullable: true})

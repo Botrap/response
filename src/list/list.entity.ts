@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne,ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne,ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn,  JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
 import { ListEntryEntity } from './listentry.entity';
 
 @Entity('list')
@@ -13,19 +13,19 @@ export class ListEntity {
   @Column({nullable: true})
   description: string;
 
-  @Column({default: 1})
+  @Column({default: true})
   active: boolean;
 
-  @Column()
+  @CreateDateColumn()
   createddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   createdby: number
 
-  @Column()
+  @UpdateDateColumn()
   updateddate: Date;
 
-  @Column()
+  @Column({nullable: true})
   updatedby: number;
 
   @OneToMany(type => ListEntryEntity, listentry => listentry.list, {eager: true})
